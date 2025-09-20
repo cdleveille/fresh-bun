@@ -41,7 +41,7 @@ export const useWsHello = ({
 }) => {
   return useWs({
     handler: apiClient.ws.hello,
-    onSuccess: ({ data }) => data && onSuccess(data),
+    onSuccess: ({ data }) => data && onSuccess(data[200]),
     body,
   });
 };

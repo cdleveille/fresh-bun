@@ -13,7 +13,7 @@ export const plugins = new Elysia()
         directives: {
           baseUri: ["'self'"],
           childSrc: ["'self'"],
-          connectSrc: ["'self'"],
+          connectSrc: ["'self'", "https://cdn.jsdelivr.net/"],
           defaultSrc: ["'self'"],
           fontSrc: ["'self'", "https:", "data:"],
           formAction: ["'self'"],
