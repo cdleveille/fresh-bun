@@ -1,4 +1,5 @@
 import { existsSync } from "node:fs";
+import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
 import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
@@ -55,12 +56,11 @@ export const plugins = new Elysia()
 
 if (existsSync(Path.Public)) {
   const serveStatic = new Elysia()
+    .use(html())
     .use(
       staticPlugin({
         prefix: "/",
         assets: Path.Public,
-        indexHTML: true,
-        alwaysStatic: true,
         noCache: true,
       }),
     )

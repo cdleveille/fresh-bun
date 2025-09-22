@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@elysiajs/eden": "^1.4.1",
+    "@elysiajs/html": "^1.4.0",
     "@elysiajs/static": "^1.4.0",
     "@elysiajs/swagger": "1.2.2",
     "@tanstack/react-query": "^5.89.0",
