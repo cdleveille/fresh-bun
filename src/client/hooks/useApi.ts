@@ -3,15 +3,15 @@ import type { Static } from "elysia";
 
 import { apiClient } from "@/client/helpers/network";
 import { useWs } from "@/client/hooks/useWs";
-import type { schema } from "@/shared/schema";
+import type { apiSchema } from "@/shared/schema";
 import type { TOnSuccess } from "@/shared/types";
 
 export const useGetHello = ({
   query,
   onSuccess,
 }: {
-  query: Static<typeof schema.api.hello.get.query>;
-  onSuccess: TOnSuccess<(typeof schema.api.hello.get.response)[200]>;
+  query: Static<typeof apiSchema.hello.get.query>;
+  onSuccess: TOnSuccess<(typeof apiSchema.hello.get.response)[200]>;
 }) => {
   return useMutation({
     mutationFn: () => apiClient.http.hello.get({ query }),
@@ -23,8 +23,8 @@ export const usePostHello = ({
   body,
   onSuccess,
 }: {
-  body: Static<typeof schema.api.hello.post.body>;
-  onSuccess: TOnSuccess<(typeof schema.api.hello.post.response)[200]>;
+  body: Static<typeof apiSchema.hello.post.body>;
+  onSuccess: TOnSuccess<(typeof apiSchema.hello.post.response)[200]>;
 }) => {
   return useMutation({
     mutationFn: () => apiClient.http.hello.post(body),
@@ -36,8 +36,8 @@ export const useWsHello = ({
   body,
   onSuccess,
 }: {
-  body: Static<typeof schema.api.hello.ws.body>;
-  onSuccess: TOnSuccess<typeof schema.api.hello.ws.response>;
+  body: Static<typeof apiSchema.hello.ws.body>;
+  onSuccess: TOnSuccess<typeof apiSchema.hello.ws.response>;
 }) => {
   return useWs({
     handler: apiClient.ws.hello,
