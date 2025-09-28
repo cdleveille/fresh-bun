@@ -37,11 +37,11 @@ export const useWsHello = ({
   onSuccess,
 }: {
   body: Static<typeof schema.api.hello.ws.body>;
-  onSuccess: TOnSuccess<(typeof schema.api.hello.ws.response)[200]>;
+  onSuccess: TOnSuccess<typeof schema.api.hello.ws.response>;
 }) => {
   return useWs({
     handler: apiClient.ws.hello,
-    onSuccess: ({ data }) => data && onSuccess(data),
+    onSuccess: ({ data }) => data && onSuccess(data[200]),
     body,
   });
 };
