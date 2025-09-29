@@ -17,6 +17,7 @@ export const plugins = new Elysia()
           connectSrc: [
             "'self'",
             "https://cdn.jsdelivr.net/",
+            "https://fonts.scalar.com/",
             `wss://${AppInfo.url.replace(/^https?:\/\//, "")}:${Config.PORT}/`,
           ],
           defaultSrc: ["'self'"],
