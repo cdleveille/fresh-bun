@@ -25,4 +25,6 @@ export type TTreatyHandler<TSend, TReceive> = {
 
 export type TOnSuccess<TReceive extends TSchema> = (data: Static<TReceive>) => void;
 
+export type TInfer200<T> = T extends { 200: infer R } ? R : never;
+
 export type TReactStateSetter<T> = React.Dispatch<React.SetStateAction<T>>;

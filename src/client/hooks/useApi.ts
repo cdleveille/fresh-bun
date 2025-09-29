@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import type { Static } from "elysia";
 
-import { apiClient } from "@/client/helpers/network";
+import { apiClient, infer200 } from "@/client/helpers/network";
 import { useWs } from "@/client/hooks/useWs";
 import type { apiSchema } from "@/shared/schema";
 import type { TOnSuccess } from "@/shared/types";
@@ -41,8 +41,7 @@ export const useWsHello = ({
 }) => {
   return useWs({
     handler: apiClient.ws.hello,
-    // biome-ignore lint/suspicious/noExplicitAny: runtime data structure doesn't match inferred type
-    onSuccess: ({ data }) => data && onSuccess(data as any),
+    onSuccess: ({ data }) => data && onSuccess(infer200(data)),
     body,
   });
 };

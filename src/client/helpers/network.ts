@@ -1,7 +1,7 @@
 import { treaty } from "@elysiajs/eden";
 
 import { Config } from "@/client/helpers/config";
-import type { TApi } from "@/shared/types";
+import type { TApi, TInfer200 } from "@/shared/types";
 
 const { origin, protocol, hostname } = window.location;
 
@@ -9,6 +9,8 @@ export const apiClient = {
   http: treaty<TApi>(origin).api,
   ws: treaty<TApi>(`${protocol}//${hostname}:${Config.PORT}`).api,
 };
+
+export const infer200 = <T>(data: T) => data as TInfer200<T>;
 
 export const httpClient = {
   get: async (url: string, init: RequestInit) => request(url, { ...init, method: "GET" }),
