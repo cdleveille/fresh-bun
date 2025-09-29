@@ -4,6 +4,7 @@ import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { helmet } from "elysia-helmet";
 
+import { Config } from "@/server/config";
 import { AppInfo, Path } from "@/shared/constants";
 
 export const plugins = new Elysia()
@@ -16,8 +17,7 @@ export const plugins = new Elysia()
           connectSrc: [
             "'self'",
             "https://cdn.jsdelivr.net/",
-            `ws://${AppInfo.url.replace(/^https?:\/\//, "")}/`,
-            `wss://${AppInfo.url.replace(/^https?:\/\//, "")}/`,
+            `wss://${AppInfo.url.replace(/^https?:\/\//, "")}:${Config.PORT}/`,
           ],
           defaultSrc: ["'self'"],
           fontSrc: ["'self'", "https:", "data:"],
