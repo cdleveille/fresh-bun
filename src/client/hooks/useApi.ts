@@ -37,11 +37,12 @@ export const useWsHello = ({
   onSuccess,
 }: {
   body: Static<typeof apiSchema.hello.ws.body>;
-  onSuccess: TOnSuccess<(typeof apiSchema.hello.ws.response)[200]>;
+  onSuccess: TOnSuccess<typeof apiSchema.hello.ws.response>;
 }) => {
   return useWs({
     handler: apiClient.ws.hello,
-    onSuccess: ({ data }) => data && onSuccess(data),
+    // biome-ignore lint/suspicious/noExplicitAny: runtime data structure doesn't match inferred type
+    onSuccess: ({ data }) => data && onSuccess(data as any),
     body,
   });
 };
