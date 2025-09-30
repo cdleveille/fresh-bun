@@ -46,7 +46,7 @@ export const plugins = new Elysia()
   )
   .use(
     swagger({
-      path: "/api/reference",
+      path: "/api",
       documentation: {
         info: {
           title: AppInfo.name,

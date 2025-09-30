@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-
 import type { TTreatyHandler } from "@/shared/types";
 
 export const useWs = <TSend, TReceive>({
@@ -36,5 +35,5 @@ export const useWs = <TSend, TReceive>({
     };
   }, []);
 
-  return { send };
+  return { send, subscribe: handler.subscribe };
 };

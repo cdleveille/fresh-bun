@@ -1,5 +1,4 @@
 import { useLoaderData } from "@tanstack/react-router";
-import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 import BunLogo from "@/client/assets/bun.svg";
@@ -7,11 +6,7 @@ import { useGetHello, usePostHello, useWsHello } from "@/client/hooks/useApi";
 import { useCountStore } from "@/client/hooks/useCountStore";
 
 export const Home = () => {
-  const loaderData = useLoaderData({ from: "/" });
-
-  useEffect(() => {
-    console.log("loader data:", loaderData);
-  }, [loaderData]);
+  const { message } = useLoaderData({ from: "/" });
 
   const { mutate: getHello } = useGetHello({
     query: { message: "hello from client!" },
@@ -32,7 +27,7 @@ export const Home = () => {
 
   return (
     <main>
-      <h1>hello from bun!</h1>
+      <h1>{message.slice(5)}</h1>
       <BunLogo width={250} height={225} />
       <div className="row" style={{ scale: 1.5 }}>
         <button type="button" onClick={minusCount}>
