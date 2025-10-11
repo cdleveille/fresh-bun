@@ -39,7 +39,8 @@
       "source": {
         "organizeImports": "on"
       }
-    }
+    },
+    "includes": ["**", "!**/routeTree.gen.ts"]
   },
   "overrides": [{ "includes": ["**/*.cmd", "**/*.bat"], "formatter": { "lineEnding": "crlf" } }]
 }
