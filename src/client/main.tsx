@@ -1,38 +1,20 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import { AppProvider } from "@/client/components/AppProvider";
-import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
-import { routeTree } from "@/client/routes/routeTree.gen";
+import "@/client/main.css";
+import { Home } from "@/client/components/Home";
+import { assertGetElementById } from "@/client/helpers/browser";
 
-window.addEventListener("load", () => {
-  registerServiceWorker().catch(error => {
-    console.error("Service worker registration failed:", error);
-  });
-});
-
-const queryClient = new QueryClient();
-
-const router = createRouter({
-  routeTree,
-  context: { queryClient },
-});
-
-const root = assertGetElementById("root");
-createRoot(root).render(
-  <QueryClientProvider client={queryClient}>
-    <AppProvider>
-      <RouterProvider router={router} />
-    </AppProvider>
-  </QueryClientProvider>,
+const elem = assertGetElementById("root");
+const app = (
+  <StrictMode>
+    <Home />
+  </StrictMode>
 );
 
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-  interface RouterContext {
-    queryClient: QueryClient;
-  }
+if (import.meta.hot) {
+  const root = import.meta.hot.data.root ?? createRoot(elem);
+  root.render(app);
+} else {
+  createRoot(elem).render(app);
 }

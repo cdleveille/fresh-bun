@@ -1,7 +1,7 @@
 {
-  "name": "hello from bun!",
-  "short_name": "hello!",
-  "description": "👋",
+  "name": "fresh-bun",
+  "short_name": "fresh-bun",
+  "description": "Single-page web app project template curated for performance, developer experience, and type safety.",
   "id": "/",
   "start_url": "/",
   "display": "minimal-ui",

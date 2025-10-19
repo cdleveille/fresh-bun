@@ -13,24 +13,4 @@ export const AppInfo = {
   themeColor: "#14151a",
 };
 
-export enum Env {
-  Production = "production",
-  Development = "development",
-}
-
-export enum Path {
-  Public = "public",
-  Client = "src/client",
-}
-
-export enum ErrorMessage {
-  _500 = "Internal Server Error",
-}
-
-export const STORED_STATE_PREFIX = "state";
-
-export const HASH_PREFIX = "~";
-
-export const HASH_REGEX = new RegExp(`${HASH_PREFIX}.{8}\\.[a-zA-Z0-9]+$`);
-
-export const WS_TIMEOUT = 600; // 10 minutes
+export const HASH_REGEX = /-.{8}\.[a-zA-Z0-9]+$/;

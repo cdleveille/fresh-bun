@@ -1,6 +1,5 @@
 import { Elysia } from "elysia";
 
-import { WS_TIMEOUT } from "@/shared/constants";
 import { apiSchema } from "@/shared/schema";
 
 export const api = new Elysia({ prefix: "/api" })
@@ -27,6 +26,6 @@ export const api = new Elysia({ prefix: "/api" })
       console.log(`WS /api/hello "${message}"`);
       ws.send({ message: "WS: hello from bun!" });
     },
-    idleTimeout: WS_TIMEOUT,
+    idleTimeout: 600,
     ...apiSchema.hello.ws,
   });
