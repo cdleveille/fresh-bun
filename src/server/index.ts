@@ -7,6 +7,8 @@ const server = Bun.serve({
   routes: {
     "/*": index,
     "/api/*": api.fetch,
+    "/manifest.json": Bun.file("src/client/manifest.json"),
+    "/robots.txt": Bun.file("src/client/robots.txt"),
     "/sw.js": Bun.file("src/client/sw.js"),
   },
   development: process.env.NODE_ENV !== "production" && {

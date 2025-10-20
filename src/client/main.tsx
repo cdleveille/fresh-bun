@@ -6,7 +6,7 @@ import { Home } from "@/client/components/Home";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
 import { Config } from "@/client/helpers/config";
 
-console.log(Config.IS_PROD);
+console.log("IS_PROD:", Config.IS_PROD);
 
 window.addEventListener("load", () => {
   registerServiceWorker().catch(error => {

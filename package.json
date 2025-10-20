@@ -11,7 +11,7 @@
     "format": "biome format --write .",
     "check": "biome check .",
     "tsc": "tsc -p tsconfig.json",
-    "dev": "bun --hot src/server/index.ts",
+    "dev": "bun run --hot src/server/index.ts",
     "bundle": "bun build src/client/index.html --outdir=dist --minify --sourcemap --target=browser ",
     "build": "bun build src/server/index.ts --compile --outfile=bin/main --minify --sourcemap --bytecode --target bun",
     "start": "NODE_ENV=production bun run src/server/index.ts"
