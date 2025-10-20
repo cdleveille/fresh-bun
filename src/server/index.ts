@@ -7,6 +7,11 @@ const server = Bun.serve({
   routes: {
     "/*": index,
     "/api/*": api.fetch,
+    "/favicon.ico": Bun.file("src/client/favicon.ico"),
+    "/icons/*": request => {
+      const iconName = request.url.split("/icons/")[1];
+      return new Response(Bun.file(`src/client/icons/${iconName}`));
+    },
     "/manifest.json": Bun.file("src/client/manifest.json"),
     "/robots.txt": Bun.file("src/client/robots.txt"),
     "/sw.js": Bun.file("src/client/sw.js"),
