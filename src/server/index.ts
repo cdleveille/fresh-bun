@@ -12,7 +12,12 @@ const server = Bun.serve({
       const iconName = request.url.split("/icons/")[1];
       return new Response(Bun.file(`src/client/icons/${iconName}`));
     },
+    "/src/client/icons/*": request => {
+      const iconName = request.url.split("/icons/")[1];
+      return new Response(Bun.file(`src/client/icons/${iconName}`));
+    },
     "/manifest.json": Bun.file("src/client/manifest.json"),
+    "/src/client/manifest.json": Bun.file("src/client/manifest.json"),
     "/robots.txt": Bun.file("src/client/robots.txt"),
     "/sw.js": Bun.file("src/client/sw.js"),
   },

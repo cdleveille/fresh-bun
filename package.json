@@ -11,16 +11,18 @@
     "format": "biome format --write .",
     "check": "biome check .",
     "tsc": "tsc -p tsconfig.json",
-    "dev": "bun run --hot src/server/index.ts",
-    "build": "bun build src/server/index.ts --compile --root src/client --outfile=bin/main --minify --sourcemap --bytecode --target=bun",
+    "dev": "concurrently \"tsr watch\" \"bun run --hot src/server/index.ts\"",
+    "build": "tsr generate && bun build src/server/index.ts --compile --root src/client --outfile=bin/main --minify --sourcemap --bytecode --target=bun",
     "start": "NODE_ENV=production bun run src/server/index.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",
     "@evilmartians/lefthook": "^1.13.6",
+    "@tanstack/router-cli": "^1.133.15",
     "@types/bun": "latest",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "concurrently": "^9.2.1",
     "typescript": "^5.9.3"
   },
   "dependencies": {

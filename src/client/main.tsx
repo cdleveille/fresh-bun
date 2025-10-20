@@ -8,7 +8,7 @@ import { AppProvider } from "@/client/components/AppProvider";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
 import { Config } from "@/client/helpers/config";
 
-// import { routeTree } from "@/client/routes/routeTree.gen";
+import { routeTree } from "@/client/routes/routeTree.gen";
 
 console.log("IS_PROD:", Config.IS_PROD);
 
@@ -21,7 +21,7 @@ window.addEventListener("load", () => {
 const queryClient = new QueryClient();
 
 const router = createRouter({
-  // routeTree,
+  routeTree,
   context: { queryClient },
 });
 
