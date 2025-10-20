@@ -1,4 +1,4 @@
-# bun-react-template
+# fresh-bun
 
 To install dependencies:
 
