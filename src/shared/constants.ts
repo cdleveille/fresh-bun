@@ -12,5 +12,3 @@ export const AppInfo = {
   url: "https://fresh-bun.fly.dev",
   themeColor: "#14151a",
 };
-
-export const HASH_REGEX = /-.{8}\.[a-zA-Z0-9]+$/;

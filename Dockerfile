@@ -21,7 +21,6 @@ RUN bun run biome ci . && \
 FROM gcr.io/distroless/base
 
 COPY --from=build /app/bin /app/bin
-COPY --from=build /app/public /app/public
 
 WORKDIR /app
 

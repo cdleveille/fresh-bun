@@ -7,10 +7,11 @@ const server = Bun.serve({
   routes: {
     "/*": index,
     "/api/*": api.fetch,
+    "/sw.js": Bun.file("src/client/sw.js"),
   },
   development: process.env.NODE_ENV !== "production" && {
     hmr: true,
   },
 });
 
-console.log(`🚀 Server running at ${server.url}`);
+console.log(`Server listening on ${server.url}`);

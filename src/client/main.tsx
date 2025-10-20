@@ -3,7 +3,16 @@ import { createRoot } from "react-dom/client";
 
 import "@/client/main.css";
 import { Home } from "@/client/components/Home";
-import { assertGetElementById } from "@/client/helpers/browser";
+import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
+import { Config } from "@/client/helpers/config";
+
+console.log(Config.IS_PROD);
+
+window.addEventListener("load", () => {
+  registerServiceWorker().catch(error => {
+    console.error("Service worker registration failed:", error);
+  });
+});
 
 const elem = assertGetElementById("root");
 const app = (

@@ -12,8 +12,8 @@
     "check": "biome check .",
     "tsc": "tsc -p tsconfig.json",
     "dev": "bun --hot src/server/index.ts",
-    "bundle": "bun build src/client/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-    "build": "bun build src/server/index.ts --compile --outfile=bin/main --minify --sourcemap --bytecode --target bun --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
+    "bundle": "bun build src/client/index.html --outdir=dist --minify --sourcemap --target=browser ",
+    "build": "bun build src/server/index.ts --compile --outfile=bin/main --minify --sourcemap --bytecode --target bun",
     "start": "NODE_ENV=production bun run src/server/index.ts"
   },
   "devDependencies": {
