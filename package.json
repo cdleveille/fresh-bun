@@ -24,8 +24,14 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.4.4",
+    "@tanstack/react-query": "^5.90.5",
+    "@tanstack/react-router": "^1.133.15",
+    "@tanstack/react-router-devtools": "^1.133.15",
     "elysia": "^1.4.12",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
+    "zustand": "^5.0.8"
   }
 }

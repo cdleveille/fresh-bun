@@ -1,10 +1,14 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import "@/client/main.css";
-import { Home } from "@/client/components/Home";
+import { AppProvider } from "@/client/components/AppProvider";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
 import { Config } from "@/client/helpers/config";
+
+// import { routeTree } from "@/client/routes/routeTree.gen";
 
 console.log("IS_PROD:", Config.IS_PROD);
 
@@ -14,10 +18,21 @@ window.addEventListener("load", () => {
   });
 });
 
+const queryClient = new QueryClient();
+
+const router = createRouter({
+  // routeTree,
+  context: { queryClient },
+});
+
 const elem = assertGetElementById("root");
 const app = (
   <StrictMode>
-    <Home />
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <RouterProvider router={router} />
+      </AppProvider>
+    </QueryClientProvider>
   </StrictMode>
 );
 
@@ -26,4 +41,13 @@ if (import.meta.hot) {
   root.render(app);
 } else {
   createRoot(elem).render(app);
+}
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+  interface RouterContext {
+    queryClient: QueryClient;
+  }
 }
