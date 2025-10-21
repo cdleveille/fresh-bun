@@ -8,11 +8,12 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
         justifyContent: "center",
         alignItems: "center",
         rowGap: "2rem",
-        padding: "0 1rem 1rem 1rem",
+        padding: "0 1rem",
       }}
     >
       <h1>Error!</h1>
-      <div style={{ color: "red", fontFamily: "monospace" }}>{error.message}</div>
+      <div style={{ color: "red", fontFamily: "monospace", fontSize: "1rem" }}>{error.message}</div>
+      <a href="/">Home</a>
     </div>
   );
 };

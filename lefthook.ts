@@ -2,7 +2,8 @@ import { chmod, exists, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 if (!(await exists(".git"))) {
-  throw new Error("lefthook.ts script must be run from the root folder of git repo");
+  console.warn("lefthook could not find .git folder, skipping hook setup ⚠️");
+  process.exit(0);
 }
 
 const HOOKS_DIR = ".git/hooks";
@@ -17,4 +18,4 @@ await writeFile(join(HOOKS_DIR, "pre-commit"), preCommit);
 
 await chmod(join(HOOKS_DIR, "pre-commit"), 0o755);
 
-console.log("lefthook hooks synced ✅");
+console.log("lefthook synced ✅");

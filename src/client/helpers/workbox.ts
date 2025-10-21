@@ -15,4 +15,4 @@ const { count } = await injectManifest({
   dontCacheBustURLsMatching: HASH_REGEX,
 });
 
-console.log(`${count} URLs were injected ✅`);
+console.log(`${count} URLs were injected for precaching ✅`);

@@ -1,9 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { createRoot } from "react-dom/client";
 
 import { AppProvider } from "@/client/components/AppProvider";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
+import { queryClient } from "@/client/helpers/network";
 import { routeTree } from "@/client/routes/routeTree.gen";
 
 window.addEventListener("load", () => {
@@ -11,8 +12,6 @@ window.addEventListener("load", () => {
     console.error("Service worker registration failed:", error);
   });
 });
-
-const queryClient = new QueryClient();
 
 const router = createRouter({
   routeTree,
@@ -27,12 +26,3 @@ createRoot(root).render(
     </AppProvider>
   </QueryClientProvider>,
 );
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-  interface RouterContext {
-    queryClient: QueryClient;
-  }
-}
