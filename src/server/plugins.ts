@@ -50,7 +50,7 @@ export const plugins = new Elysia()
       exclude: { tags: ["no-doc"] },
       documentation: {
         info: {
-          title: AppInfo.name,
+          title: AppInfo.title,
           version: AppInfo.version,
           description: AppInfo.description,
           contact: AppInfo.author,

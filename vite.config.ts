@@ -83,7 +83,7 @@ export default defineConfig(({ mode }) => ({
       name: "html-transform",
       transformIndexHtml(html) {
         return html
-          .replace(/{{name}}/g, AppInfo.name)
+          .replace(/{{title}}/g, AppInfo.title)
           .replace(/{{url}}/g, AppInfo.url)
           .replace(/{{description}}/g, AppInfo.description)
           .replace(/{{author.name}}/g, AppInfo.author.name)

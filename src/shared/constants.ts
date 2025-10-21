@@ -1,7 +1,7 @@
-import { author, description, license, version } from "package.json";
+import { author, description, license, name, version } from "package.json";
 
 export const AppInfo = {
-  name: "fresh-bun",
+  title: name,
   version,
   description,
   author: {
