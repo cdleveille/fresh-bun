@@ -1,27 +1,15 @@
 import { useLoaderData } from "@tanstack/react-router";
-import { toast } from "react-hot-toast";
 
 import BunLogo from "@/client/assets/bun.svg";
-import { useGetHello, usePostHello, useWsHello } from "@/client/hooks/useApi";
+import { usePostHello, useWsHello } from "@/client/hooks/useApi";
 import { useCountStore } from "@/client/hooks/useCountStore";
 
 export const Home = () => {
   const { message } = useLoaderData({ from: "/" });
 
-  const { mutate: getHello } = useGetHello({
-    query: { message: "hello from client!" },
-    onSuccess: ({ message }) => toast.success(message),
-  });
+  const { mutate: postHello } = usePostHello();
 
-  const { mutate: postHello } = usePostHello({
-    body: { message: "hello from client!" },
-    onSuccess: ({ message }) => toast.success(message),
-  });
-
-  const { send: wsHello } = useWsHello({
-    body: { message: "hello from client!" },
-    onSuccess: ({ message }) => toast.success(message),
-  });
+  const { send: wsHello } = useWsHello();
 
   const { count, minusCount, plusCount } = useCountStore();
 
@@ -39,11 +27,8 @@ export const Home = () => {
         </button>
       </div>
       <div className="row gap">
-        <button type="button" onClick={() => getHello()}>
-          GET
-        </button>
         <button type="button" onClick={() => postHello()}>
-          POST
+          HTTP
         </button>
         <button type="button" onClick={() => wsHello()}>
           WS

@@ -1,47 +1,36 @@
-import { useMutation } from "@tanstack/react-query";
-import type { Static } from "elysia";
+import { queryOptions, useMutation } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 import { apiClient, infer200 } from "@/client/helpers/network";
 import { useWs } from "@/client/hooks/useWs";
-import type { apiSchema } from "@/shared/schema";
-import type { TOnSuccess } from "@/shared/types";
 
-export const useGetHello = ({
-  query,
-  onSuccess,
-}: {
-  query: Static<typeof apiSchema.hello.get.query>;
-  onSuccess: TOnSuccess<(typeof apiSchema.hello.get.response)[200]>;
-}) => {
+export const getHello = queryOptions({
+  queryKey: ["get-hello"],
+  queryFn: async () => {
+    const { data, error } = await apiClient.http.hello.get();
+    if (error) throw new Error(error.value.message);
+    return data;
+  },
+});
+
+export const usePostHello = () => {
   return useMutation({
-    mutationFn: () => apiClient.http.hello.get({ query }),
-    onSuccess: ({ data }) => data && onSuccess(data),
+    mutationFn: () => apiClient.http.hello.post({ message: "hello from client!" }),
+    onSuccess: ({ data, error }) => {
+      if (error) throw new Error(error.value.message);
+      toast.success(data.message);
+    },
   });
 };
 
-export const usePostHello = ({
-  body,
-  onSuccess,
-}: {
-  body: Static<typeof apiSchema.hello.post.body>;
-  onSuccess: TOnSuccess<(typeof apiSchema.hello.post.response)[200]>;
-}) => {
-  return useMutation({
-    mutationFn: () => apiClient.http.hello.post(body),
-    onSuccess: ({ data }) => data && onSuccess(data),
-  });
-};
-
-export const useWsHello = ({
-  body,
-  onSuccess,
-}: {
-  body: Static<typeof apiSchema.hello.ws.body>;
-  onSuccess: TOnSuccess<typeof apiSchema.hello.ws.response>;
-}) => {
+export const useWsHello = () => {
   return useWs({
     handler: apiClient.ws.hello,
-    onSuccess: ({ data }) => data && onSuccess(infer200(data)),
-    body,
+    onSuccess: ({ data }) => {
+      if (!data) return;
+      const { message } = infer200(data);
+      toast.success(message);
+    },
+    body: { message: "hello from client!" },
   });
 };
