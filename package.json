@@ -1,11 +1,10 @@
 {
   "name": "fresh-bun",
-  "version": "1.0.0",
-  "description": "👋",
+  "version": "0.1.0",
+  "description": "Single-page web app project template curated for performance, developer experience, and type safety.",
   "author": "Chris Leveille",
   "license": "MIT",
   "type": "module",
-  "module": "src/server/index.ts",
   "scripts": {
     "prepare": "bun run lefthook.ts",
     "lint": "biome lint .",
@@ -39,8 +38,8 @@
   },
   "dependencies": {
     "@elysiajs/eden": "^1.4.1",
+    "@elysiajs/openapi": "^1.4.11",
     "@elysiajs/static": "^1.4.0",
-    "@elysiajs/swagger": "1.2.2",
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-router": "^1.132.47",
     "elysia": "^1.4.10",

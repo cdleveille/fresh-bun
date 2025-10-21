@@ -1,7 +1,7 @@
 import { author, description, license, version } from "package.json";
 
 export const AppInfo = {
-  name: "hello from bun!",
+  name: "fresh-bun",
   version,
   description,
   author: {
@@ -26,8 +26,6 @@ export enum Path {
 export enum ErrorMessage {
   _500 = "Internal Server Error",
 }
-
-export const STORED_STATE_PREFIX = "state";
 
 export const HASH_PREFIX = "~";
 

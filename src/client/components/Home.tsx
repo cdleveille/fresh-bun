@@ -1,13 +1,13 @@
 import { useLoaderData } from "@tanstack/react-router";
 
 import BunLogo from "@/client/assets/bun.svg";
-import { usePostHello, useWsHello } from "@/client/hooks/useApi";
+import { useHttpHello, useWsHello } from "@/client/hooks/useApi";
 import { useCountStore } from "@/client/hooks/useCountStore";
 
 export const Home = () => {
   const { message } = useLoaderData({ from: "/" });
 
-  const { mutate: postHello } = usePostHello();
+  const { mutate: httpHello } = useHttpHello();
 
   const { send: wsHello } = useWsHello();
 
@@ -27,7 +27,7 @@ export const Home = () => {
         </button>
       </div>
       <div className="row gap">
-        <button type="button" onClick={() => postHello()}>
+        <button type="button" onClick={() => httpHello()}>
           HTTP
         </button>
         <button type="button" onClick={() => wsHello()}>

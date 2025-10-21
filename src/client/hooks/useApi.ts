@@ -1,19 +1,10 @@
-import { queryOptions, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 import { apiClient, infer200 } from "@/client/helpers/network";
 import { useWs } from "@/client/hooks/useWs";
 
-export const getHello = queryOptions({
-  queryKey: ["get-hello"],
-  queryFn: async () => {
-    const { data, error } = await apiClient.http.hello.get();
-    if (error) throw new Error(error.value.message);
-    return data;
-  },
-});
-
-export const usePostHello = () => {
+export const useHttpHello = () => {
   return useMutation({
     mutationFn: () => apiClient.http.hello.post({ message: "hello from client!" }),
     onSuccess: ({ data, error }) => {

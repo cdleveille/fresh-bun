@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
+import { openapi } from "@elysiajs/openapi";
 import { staticPlugin } from "@elysiajs/static";
-import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { helmet } from "elysia-helmet";
 
@@ -45,8 +45,9 @@ export const plugins = new Elysia()
     }),
   )
   .use(
-    swagger({
+    openapi({
       path: "/api",
+      exclude: { tags: ["no-doc"] },
       documentation: {
         info: {
           title: AppInfo.name,
@@ -60,7 +61,7 @@ export const plugins = new Elysia()
   );
 
 if (existsSync(Path.Public)) {
-  const serveStatic = new Elysia()
+  const serveStatic = new Elysia({ tags: ["no-doc"] })
     .use(
       staticPlugin({
         prefix: "/",
@@ -71,9 +72,10 @@ if (existsSync(Path.Public)) {
       }),
     )
     // SPA index.html fallback to enable client-side routing
-    .get("*", ({ path }) => {
+    .get("*", ({ path, status }) => {
       const url = path.split("/").pop();
       if (url && !url.includes(".")) return Bun.file(`${Path.Public}/index.html`);
+      return status(404);
     });
   plugins.use(serveStatic);
 }
