@@ -65,6 +65,7 @@ export default defineConfig(({ mode }) => ({
       autoCodeSplitting: true,
       routesDirectory: resolve(root, "routes"),
       generatedRouteTree: resolve(root, "routes", "routeTree.gen.ts"),
+      routeFileIgnorePattern: "routeTree.gen.ts",
     }),
     react({
       babel: {
