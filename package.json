@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Single-page web app project template curated for performance, developer experience, and type safety.",
   "author": "Chris Leveille",
-  "license": "MIT",
+  "license": "MIT No Attribution",
   "type": "module",
   "scripts": {
     "prepare": "bun run lefthook.ts",
