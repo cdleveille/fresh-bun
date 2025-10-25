@@ -84,12 +84,12 @@ export default defineConfig(({ mode }) => ({
       name: "html-transform",
       transformIndexHtml(html) {
         return html
-          .replace(/{{title}}/g, AppInfo.title)
-          .replace(/{{url}}/g, AppInfo.url)
-          .replace(/{{description}}/g, AppInfo.description)
-          .replace(/{{author.name}}/g, AppInfo.author.name)
-          .replace(/{{author.url}}/g, AppInfo.author.url)
-          .replace(/{{themeColor}}/g, AppInfo.themeColor);
+          .replace(/%%title%%/g, AppInfo.title)
+          .replace(/%%url%%/g, AppInfo.url)
+          .replace(/%%description%%/g, AppInfo.description)
+          .replace(/%%author.name%%/g, AppInfo.author.name)
+          .replace(/%%author.url%%/g, AppInfo.author.url)
+          .replace(/%%themeColor%%/g, AppInfo.themeColor);
       },
     },
     ...[
