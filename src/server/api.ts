@@ -9,7 +9,7 @@ export const api = new Elysia({ prefix: "/api" })
     c => {
       const { message } = c.query;
       console.log(`GET /api/hello${message ? ` "${message}"` : ""}`);
-      return { message: "GET: hello from bun!" };
+      return { message: "hello from bun!" };
     },
     apiSchema.hello.get,
   )
@@ -18,14 +18,14 @@ export const api = new Elysia({ prefix: "/api" })
     c => {
       const { message } = c.body;
       console.log(`POST /api/hello "${message}"`);
-      return { message: "POST: hello from bun!" };
+      return { message: "hello from bun!" };
     },
     apiSchema.hello.post,
   )
   .ws("/hello", {
     message(ws, { message }) {
       console.log(`WS /api/hello "${message}"`);
-      ws.send({ message: "WS: hello from bun!" });
+      ws.send({ message: "hello from bun!" });
     },
     idleTimeout: WS_TIMEOUT,
     ...apiSchema.hello.ws,

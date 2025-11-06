@@ -9,7 +9,7 @@ export const useHttpHello = () => {
     mutationFn: () => apiClient.http.hello.post({ message: "hello from client!" }),
     onSuccess: ({ data, error }) => {
       if (error) throw new Error(error.value.message);
-      toast.success(data.message);
+      toast.success(`HTTP: ${data.message}`);
     },
   });
 };
@@ -20,7 +20,7 @@ export const useWsHello = () => {
     onSuccess: ({ data }) => {
       if (!data) return;
       const { message } = infer200(data);
-      toast.success(message);
+      toast.success(`WS: ${message}`);
     },
     body: { message: "hello from client!" },
   });
