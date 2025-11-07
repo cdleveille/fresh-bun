@@ -52,7 +52,7 @@ bun install
 
 ### Development
 
-Run Elysia backend and Vite dev server concurrently:
+Run server and client concurrently with hot reloading on file-save:
 
 ```bash
 bun dev
@@ -60,17 +60,17 @@ bun dev
 
 ### Production
 
-**Option 1:** Bundle client and start server:
+**Option 1:** Build client and start server:
 
 ```bash
-bun bundle
+bun build:client
 bun start
 ```
 
 **Option 2:** Build app and run standalone binary:
 
 ```bash
-bun run build
+bun build:app
 ./bin/main
 ```
 
