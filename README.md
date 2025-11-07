@@ -4,7 +4,7 @@ Single-page web app project template curated for performance, developer experien
 
 ## 🔧 Stack
 
-- [Bun](https://bun.sh) - server runtime, package manager, script runner
+- [Bun](https://bun.sh) - server runtime, package manager
 - [Elysia](https://elysiajs.com) - server framework
 - [Eden](https://elysiajs.com/eden/overview) - end-to-end type safety
 - [React](https://react.dev) - user interface
@@ -15,7 +15,7 @@ Single-page web app project template curated for performance, developer experien
 
 ## ✨ Features
 
-- **100% Type-Safe API**: Full static type-safety between the server and client. See [api.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/server/api.ts) and [useApi.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/client/hooks/useApi.ts) for simple HTTP and WebSocket examples.
+- **100% Type-Safe API**: Full static type safety between the server and client. See [api.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/server/api.ts) and [useApi.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/client/hooks/useApi.ts) for simple HTTP and WebSocket examples.
 
 - **Automatic API Documentation**: Interactive [Scalar](https://github.com/scalar/scalar) documentation is automatically generated and served at `/api`. The raw OpenAPI JSON is available at `/api/json`.
 
@@ -50,15 +50,15 @@ cd fresh-bun
 bun install
 ```
 
-### Local Development
+### Development
 
-Run the Elysia backend and Vite dev server concurrently:
+Run Elysia backend and Vite dev server concurrently:
 
 ```bash
 bun dev
 ```
 
-### Production Build
+### Production
 
 **Option 1:** Bundle client and start server:
 
