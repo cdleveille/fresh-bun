@@ -28,7 +28,7 @@ export const plugins = new Elysia()
           manifestSrc: ["'self'"],
           mediaSrc: ["'self'"],
           objectSrc: ["'none'"],
-          scriptSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-eval'"],
           scriptSrcAttr: ["'none'"],
           scriptSrcElem: [
             "'self'",
