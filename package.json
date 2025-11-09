@@ -44,7 +44,6 @@
     "@tanstack/react-query": "^5.90.5",
     "@tanstack/react-router": "^1.133.27",
     "elysia": "^1.4.13",
-    "elysia-helmet": "^3.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0",

@@ -2,63 +2,24 @@ import { existsSync } from "node:fs";
 import { openapi } from "@elysiajs/openapi";
 import { staticPlugin } from "@elysiajs/static";
 import { Elysia } from "elysia";
-import { helmet } from "elysia-helmet";
 
-import { Config } from "@/server/config";
 import { AppInfo, Path } from "@/shared/constants";
 
-export const plugins = new Elysia()
-  .use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          baseUri: ["'self'"],
-          childSrc: ["'self'"],
-          connectSrc: [
-            "'self'",
-            "https://cdn.jsdelivr.net/",
-            "https://fonts.scalar.com/",
-            `wss://${AppInfo.url.replace(/^https?:\/\//, "")}:${Config.PORT}/`,
-          ],
-          defaultSrc: ["'self'"],
-          fontSrc: ["'self'", "https:", "data:"],
-          formAction: ["'self'"],
-          frameAncestors: ["'self'"],
-          imgSrc: ["'self'", "data:"],
-          manifestSrc: ["'self'"],
-          mediaSrc: ["'self'"],
-          objectSrc: ["'none'"],
-          scriptSrc: ["'self'", "'unsafe-eval'"],
-          scriptSrcAttr: ["'none'"],
-          scriptSrcElem: [
-            "'self'",
-            "'sha256-TcUB1mzXiQO4GxpTRZ0EMpOXKMU3u+n/q1WrgVIcs1I='",
-            "https://cdn.jsdelivr.net/npm/@scalar/",
-          ],
-          styleSrc: ["'self'"],
-          styleSrcAttr: ["'self'", "'unsafe-inline'"],
-          styleSrcElem: ["'self'", "'unsafe-inline'"],
-          upgradeInsecureRequests: [],
-          workerSrc: ["'self'"],
-        },
+export const plugins = new Elysia().use(
+  openapi({
+    path: "/api",
+    exclude: { tags: ["no-doc"] },
+    documentation: {
+      info: {
+        title: AppInfo.title,
+        version: AppInfo.version,
+        description: AppInfo.description,
+        contact: AppInfo.author,
+        license: { name: AppInfo.license },
       },
-    }),
-  )
-  .use(
-    openapi({
-      path: "/api",
-      exclude: { tags: ["no-doc"] },
-      documentation: {
-        info: {
-          title: AppInfo.title,
-          version: AppInfo.version,
-          description: AppInfo.description,
-          contact: AppInfo.author,
-          license: { name: AppInfo.license },
-        },
-      },
-    }),
-  );
+    },
+  }),
+);
 
 if (existsSync(Path.Public)) {
   const serveStatic = new Elysia({ tags: ["no-doc"] })
