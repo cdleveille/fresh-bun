@@ -4,7 +4,7 @@ Single-page web app project template curated for performance, developer experien
 
 ## 🔧 Stack
 
-- [Bun](https://bun.sh) - server runtime, package manager
+- [Bun](https://bun.com) - server runtime, package manager
 - [Elysia](https://elysiajs.com) - server framework
 - [Eden](https://elysiajs.com/eden/overview) - end-to-end type safety
 - [React](https://react.dev) - user interface
@@ -40,7 +40,7 @@ The following are not currently implemented, but may be added in the future:
 
 ### Setup
 
-1. Install [Git](https://git-scm.com/downloads), [Bun](https://bun.sh/docs/installation), and optionally [Docker](https://docs.docker.com/get-docker) (useful for testing production builds locally)
+1. Install [Git](https://git-scm.com/downloads), [Bun](https://bun.com/docs/installation), and optionally [Docker](https://docs.docker.com/get-docker) (useful for testing production builds locally)
 
 2. Clone this repository and install dependencies:
 
