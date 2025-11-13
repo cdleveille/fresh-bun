@@ -1,6 +1,6 @@
 import { injectManifest } from "workbox-build";
 
-import { HASH_REGEX, Path } from "@/shared/constants";
+import { Path } from "@/shared/constants";
 
 const outDir = Path.Public;
 
@@ -12,7 +12,6 @@ const { count } = await injectManifest({
   swSrc: `${outDir}/sw.js`,
   swDest: `${outDir}/sw.js`,
   maximumFileSizeToCacheInBytes: 5000000,
-  dontCacheBustURLsMatching: HASH_REGEX,
 });
 
 console.log(`${count} URLs were injected for precaching ✅`);

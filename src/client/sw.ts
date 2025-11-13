@@ -1,5 +1,3 @@
-import { HASH_REGEX } from "@/shared/constants";
-
 declare const self: ServiceWorkerGlobalScope & {
   __WB_DISABLE_DEV_LOGS: boolean;
   __WB_MANIFEST: { url: string }[];
@@ -8,7 +6,7 @@ self.__WB_DISABLE_DEV_LOGS = true;
 
 const manifest = self.__WB_MANIFEST;
 
-const urlsToPrecache = ["/", ...manifest.map(({ url }) => url)];
+const urlsToPrecache = ["/", ...(manifest ?? []).map(({ url }) => url)];
 
 // Increment this version to invalidate cache and force clients to refetch all assets
 const CACHE_VERSION = "v1";
@@ -24,6 +22,8 @@ const cacheFirstWithoutHashFileTypes = [
   ".png",
   ".webp",
 ];
+
+const HASH_REGEX = /~.{8}\.[a-zA-Z0-9]+$/;
 
 const isCacheFirstWithHash = (filename: string) => HASH_REGEX.test(filename);
 
@@ -72,6 +72,7 @@ const networkFirstStrategy = async (request: Request) => {
 };
 
 const precacheUrls = async (urlsToPrecache: string[]) => {
+  console.log(urlsToPrecache);
   const cache = await caches.open(cacheName);
   await cache.addAll(urlsToPrecache);
 };
