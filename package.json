@@ -44,7 +44,6 @@
     "@tanstack/react-query": "^5.90.8",
     "@tanstack/react-router": "^1.135.2",
     "elysia": "^1.4.16",
-    "fresh-bun": ".",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0",
