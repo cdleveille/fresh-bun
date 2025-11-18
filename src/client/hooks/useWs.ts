@@ -7,7 +7,7 @@ export const useWs = <TSend, TReceive>({
   body,
 }: {
   handler: TTreatyHandler<TSend, TReceive>;
-  onSuccess: ({ data }: { data: TReceive | null }) => void;
+  onSuccess: ({ data }: { data: TReceive }) => void;
   body?: TSend;
 }) => {
   const wsRef = useRef<ReturnType<typeof handler.subscribe> | null>(null);
