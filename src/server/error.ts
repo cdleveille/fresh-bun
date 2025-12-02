@@ -2,7 +2,7 @@ import { type ErrorHandler, ValidationError } from "elysia";
 
 import { ErrorMessage } from "@/shared/constants";
 
-export const onError: ErrorHandler = ({ error }) => {
+export const handleError: ErrorHandler = ({ error }) => {
   if (error instanceof ValidationError) {
     const message = error.all.map(e => e.summary).join(", ");
     return { message };
