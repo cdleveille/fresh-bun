@@ -5,8 +5,8 @@
 !**/.gitignore
 **/.tsbuildinfo
 **/.vscode
+**/dist
 **/node_modules
-**/public
 .dockerignore
 Dockerfile
 fly.toml

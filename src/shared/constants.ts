@@ -19,7 +19,7 @@ export enum Env {
 }
 
 export enum Path {
-  Public = "public",
+  Public = "dist/public",
   Client = "src/client",
 }
 
