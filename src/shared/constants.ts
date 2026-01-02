@@ -26,5 +26,3 @@ export enum Path {
 export enum ErrorMessage {
   _500 = "Internal Server Error",
 }
-
-export const WS_TIMEOUT = 600; // 10 minutes
