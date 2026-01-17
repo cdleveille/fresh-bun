@@ -18,12 +18,6 @@ const router = createRouter({
   context: { queryClient },
 });
 
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
-
 const root = assertGetElementById("root");
 createRoot(root).render(
   <QueryClientProvider client={queryClient}>
@@ -32,3 +26,9 @@ createRoot(root).render(
     </AppProvider>
   </QueryClientProvider>,
 );
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
