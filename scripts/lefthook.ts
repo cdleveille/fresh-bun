@@ -18,4 +18,4 @@ await writeFile(join(HOOKS_DIR, "pre-commit"), preCommit);
 
 await chmod(join(HOOKS_DIR, "pre-commit"), 0o755);
 
-console.log("lefthook synced ✅");
+console.log("lefthook: pre-commit git hook synced ✅");

@@ -4,7 +4,7 @@ import { Path } from "@/shared/constants";
 
 const outDir = Path.Public;
 
-console.log("Injecting build manifest into sw.js...");
+console.log("workbox: injecting build manifest into sw.js...");
 
 const { count } = await injectManifest({
   globDirectory: outDir,
@@ -14,4 +14,4 @@ const { count } = await injectManifest({
   maximumFileSizeToCacheInBytes: 5000000,
 });
 
-console.log(`${count} URLs were injected for precaching ✅`);
+console.log(`workbox: ${count} URLs were injected into service worker for precaching ✅`);

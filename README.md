@@ -40,13 +40,11 @@ The following are not currently implemented, but may be added in the future:
 
 ### Setup
 
-1. Install [Git](https://git-scm.com/downloads), [Bun](https://bun.com/docs/installation), and optionally [Docker](https://docs.docker.com/get-docker) (useful for testing production builds locally)
+1. Install [Bun](https://bun.com/docs/installation) and optionally [Docker](https://docs.docker.com/get-docker) (useful for testing production builds locally)
 
-2. Clone this repository and install dependencies:
+2. Install dependencies:
 
 ```bash
-git clone https://github.com/cdleveille/fresh-bun.git
-cd fresh-bun
 bun install
 ```
 
