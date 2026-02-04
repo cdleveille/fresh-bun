@@ -4,10 +4,12 @@ import { createRoot } from "react-dom/client";
 
 import { AppProvider } from "@/client/components/AppProvider";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
+import { Config } from "@/client/helpers/config";
 import { queryClient } from "@/client/helpers/network";
 import { routeTree } from "@/client/routes/routeTree.gen";
 
 window.addEventListener("load", () => {
+  if (!Config.IS_PROD) return;
   registerServiceWorker().catch(error => {
     console.error("Service worker registration failed:", error);
   });

@@ -12,7 +12,7 @@ export const useCountStore = create<TCountStore>()(
     }),
     {
       name: "count-store",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => window.sessionStorage),
     },
   ),
 );
