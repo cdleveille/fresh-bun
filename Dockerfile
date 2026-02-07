@@ -13,9 +13,7 @@ RUN bun install --ignore-scripts --frozen-lockfile
 
 COPY --link . .
 
-RUN bun biome ci . && \
-  bun tsc && \
-  bun build:app && \
+RUN bun build:app && \
   chmod +x ./dist/main
 
 FROM gcr.io/distroless/base

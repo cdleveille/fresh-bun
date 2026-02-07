@@ -13,5 +13,11 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: bun install --ignore-scripts --frozen-lockfile
+      - run: bun biome ci .
+      - run: bun tsc
       - run: flyctl deploy
