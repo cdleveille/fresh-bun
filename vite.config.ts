@@ -30,7 +30,6 @@ export default defineConfig(({ mode }) => ({
         changeOrigin: true,
       },
     },
-    fs: { deny: ["sw.*"] },
   },
   build: {
     outDir: resolve(outDir),
@@ -84,12 +83,12 @@ export default defineConfig(({ mode }) => ({
       name: "html-transform",
       transformIndexHtml(html) {
         return html
-          .replace(/%%title%%/g, AppInfo.title)
-          .replace(/%%url%%/g, AppInfo.url)
-          .replace(/%%description%%/g, AppInfo.description)
-          .replace(/%%author.name%%/g, AppInfo.author.name)
-          .replace(/%%author.url%%/g, AppInfo.author.url)
-          .replace(/%%themeColor%%/g, AppInfo.themeColor);
+          .replace(/__title__/g, AppInfo.title)
+          .replace(/__url__/g, AppInfo.url)
+          .replace(/__description__/g, AppInfo.description)
+          .replace(/__author.name__/g, AppInfo.author.name)
+          .replace(/__author.url__/g, AppInfo.author.url)
+          .replace(/__themeColor__/g, AppInfo.themeColor);
       },
     },
     ...[
