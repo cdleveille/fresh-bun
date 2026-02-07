@@ -2,6 +2,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { createRoot } from "react-dom/client";
 
+import "@/client/style.css";
 import { AppProvider } from "@/client/components/AppProvider";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
 import { Config } from "@/client/helpers/config";
