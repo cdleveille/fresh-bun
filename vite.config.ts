@@ -1,13 +1,13 @@
 import { resolve } from "node:path";
+import babel from "@rolldown/plugin-babel";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
-import viteReact from "@vitejs/plugin-react";
+import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
-import tsconfigPaths from "vite-tsconfig-paths";
 
-import { Config } from "@/server/config";
-import { AppInfo, Env, Path } from "@/shared/constants";
+import { Config } from "./src/server/config";
+import { AppInfo, Env, Path } from "./src/shared/constants";
 
 const root = Path.Client;
 const outDir = Path.Public;
@@ -16,6 +16,7 @@ const toCopy = ["icons/", "favicon.ico", "robots.txt"];
 
 export default defineConfig(({ mode }) => ({
   root: resolve(root),
+  resolve: { tsconfigPaths: true },
   define: {
     "import.meta.env.MODE": JSON.stringify(mode),
     "import.meta.env.PORT": JSON.stringify(Config.PORT),
@@ -23,7 +24,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     open: true,
     hmr: true,
-    strictPort: false,
+    strictPort: true,
     proxy: {
       "/api": {
         target: `http://localhost:${Config.PORT}`,
@@ -66,11 +67,8 @@ export default defineConfig(({ mode }) => ({
       generatedRouteTree: resolve(root, "routes", "routeTree.gen.ts"),
       routeFileIgnorePattern: "routeTree.gen.ts",
     }),
-    viteReact({
-      babel: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
-    }),
+    viteReact(),
+    babel({ presets: [reactCompilerPreset()] }),
     svgr({
       svgrOptions: {
         exportType: "default",
@@ -78,7 +76,6 @@ export default defineConfig(({ mode }) => ({
       },
       include: "**/*.svg",
     }),
-    tsconfigPaths(),
     {
       name: "html-transform",
       transformIndexHtml(html) {
