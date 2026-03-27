@@ -17,10 +17,10 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "strict": true,
-    "baseUrl": ".",
     "incremental": false,
     "paths": {
-      "@/*": ["src/*"]
+      "*": ["./*"],
+      "@/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

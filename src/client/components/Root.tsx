@@ -1,5 +1,4 @@
 import { Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
 
 import { Header } from "@/client/components/Header";
@@ -10,7 +9,6 @@ export const Root = () => {
       <Header />
       <Outlet />
       <Toaster />
-      <TanStackRouterDevtools />
     </>
   );
 };
