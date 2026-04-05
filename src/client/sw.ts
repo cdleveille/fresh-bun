@@ -72,7 +72,6 @@ const networkFirstStrategy = async (request: Request) => {
 };
 
 const precacheUrls = async (urlsToPrecache: string[]) => {
-  console.log(urlsToPrecache);
   const cache = await caches.open(cacheName);
   await cache.addAll(urlsToPrecache);
 };

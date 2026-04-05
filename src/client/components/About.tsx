@@ -10,7 +10,7 @@ export const About = () => {
       <h1>fresh-bun</h1>
       <p>
         Single-page web app project template curated for performance, developer experience, and type
-        safety. Bun & Elysia backend, React & TanStack Router/Query frontend.
+        safety. Bun & Hono backend, React & TanStack Router/Query frontend.
       </p>
       <p>
         Created by <Link to={url}>{name}</Link>

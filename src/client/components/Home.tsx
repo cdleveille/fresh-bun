@@ -8,8 +8,7 @@ export const Home = () => {
   const { message } = useLoaderData({ from: "/" });
 
   const { mutate: httpHello } = useHttpHello();
-
-  const { send: wsHello } = useWsHello();
+  const { mutate: wsHello } = useWsHello();
 
   const { count, minusCount, plusCount } = useCountStore();
 

@@ -1,14 +1,20 @@
-import { Elysia } from "elysia";
+import { Hono } from "hono";
+import { serveStatic, websocket } from "hono/bun";
 
 import { api } from "@/server/api";
 import { Config } from "@/server/config";
-import { handleError } from "@/server/error";
-import { plugins } from "@/server/plugins";
+import { Path } from "@/shared/constants";
 
-const { PORT } = Config;
+const app = new Hono();
 
-new Elysia({ aot: true, precompile: true, nativeStaticResponse: true })
-  .onError(handleError)
-  .use(plugins)
-  .use(api)
-  .listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+app.route("/api", api);
+
+app.get("/*", serveStatic({ root: Path.Public }));
+
+Bun.serve({
+  port: Config.PORT,
+  fetch: app.fetch,
+  websocket,
+});
+
+console.log(`Server listening on http://localhost:${Config.PORT}`);

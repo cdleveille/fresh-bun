@@ -2,25 +2,31 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 import { apiClient } from "@/client/helpers/network";
-import { useWs } from "@/client/hooks/useWs";
 
 export const useHttpHello = () => {
   return useMutation({
-    mutationFn: () => apiClient.http.hello.post({ message: "hello from client!" }),
-    onSuccess: ({ data, error }) => {
-      if (error) throw new Error(error.value.message);
-      toast.success(`HTTP: ${data.message}`);
+    mutationFn: async () => {
+      const res = await apiClient.http.hello.$post({ json: { message: "hello from client!" } });
+      const data = await res.json();
+      return data;
     },
+    onSuccess: ({ message }) => toast.success(`HTTP: ${message}`),
   });
 };
 
 export const useWsHello = () => {
-  return useWs({
-    handler: apiClient.ws.hello,
-    onSuccess: ({ data }) => {
-      const { message } = data;
-      toast.success(`WS: ${message}`);
+  return useMutation({
+    mutationFn: () => {
+      return new Promise<{ message: string }>((resolve, reject) => {
+        const ws = apiClient.ws.hello.$ws();
+        ws.onopen = () => ws.send(JSON.stringify({ message: "hello from client!" }));
+        ws.onmessage = event => {
+          resolve(JSON.parse(event.data));
+          ws.close();
+        };
+        ws.onerror = reject;
+      });
     },
-    body: { message: "hello from client!" },
+    onSuccess: ({ message }) => toast.success(`WS: ${message}`),
   });
 };

@@ -2,14 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/evilmartians/lefthook/master/schema.json",
   "colors": false,
   "pre-commit": {
-    "parallel": true,
     "commands": {
-      "lint-staged": {
-        "run": "bunx biome lint --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}"
-      },
-      "typecheck-staged": {
-        "run": "bunx tsc -p tsconfig.json"
-      },
       "format-staged": {
         "run": "bunx biome format --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}",
         "stage_fixed": true

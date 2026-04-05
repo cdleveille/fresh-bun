@@ -36,15 +36,14 @@
     "workbox-build": "^7.4.0"
   },
   "dependencies": {
-    "@elysiajs/eden": "^1.4.8",
-    "@elysiajs/openapi": "^1.4.14",
-    "@elysiajs/static": "1.4.0",
+    "@hono/zod-validator": "^0.7.6",
     "@tanstack/react-query": "^5.95.2",
     "@tanstack/react-router": "^1.168.7",
-    "elysia": "1.4.22",
+    "hono": "^4.12.10",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-hot-toast": "^2.6.0",
+    "zod": "^4.3.6",
     "zustand": "^5.0.12"
   }
 }

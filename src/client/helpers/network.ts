@@ -1,14 +1,13 @@
-import { treaty } from "@elysiajs/eden";
 import { QueryClient } from "@tanstack/react-query";
+import { hc } from "hono/client";
 
 import { Config } from "@/client/helpers/config";
 import type { TApi } from "@/shared/types";
 
-const { origin, protocol, hostname } = window.location;
+const httpBase = `${location.origin}/api`;
 
-export const apiClient = {
-  http: treaty<TApi>(origin).api,
-  ws: treaty<TApi>(`${protocol}//${hostname}:${Config.PORT}`).api,
-};
+const wsBase = Config.IS_PROD ? httpBase : `http://localhost:${import.meta.env.PORT}/api`;
+
+export const apiClient = { http: hc<TApi>(httpBase), ws: hc<TApi>(wsBase).ws };
 
 export const queryClient = new QueryClient();
