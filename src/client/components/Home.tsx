@@ -15,21 +15,21 @@ export const Home = () => {
   return (
     <main>
       <h1>{message}</h1>
-      <BunLogo width={250} height={225} />
-      <div className="row" style={{ scale: 1.5 }}>
-        <button type="button" onClick={minusCount}>
-          -
+      <BunLogo className="logo" width={250} height={225} />
+      <div className="counter">
+        <button type="button" className="counter-btn" onClick={minusCount}>
+          −
         </button>
         <div className="count">{count}</div>
-        <button type="button" onClick={plusCount}>
+        <button type="button" className="counter-btn" onClick={plusCount}>
           +
         </button>
       </div>
-      <div className="row gap">
-        <button type="button" onClick={() => httpHello()}>
+      <div className="api-row">
+        <button type="button" className="api-btn" onClick={() => httpHello()}>
           HTTP
         </button>
-        <button type="button" onClick={() => wsHello()}>
+        <button type="button" className="api-btn" onClick={() => wsHello()}>
           WS
         </button>
       </div>

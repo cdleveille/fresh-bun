@@ -2,10 +2,14 @@ import { Link } from "@tanstack/react-router";
 
 export const Header = () => {
   return (
-    <header>
+    <header className="site-header">
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
+        <Link to="/" className="nav-link" activeProps={{ className: "nav-link active" }}>
+          Home
+        </Link>
+        <Link to="/about" className="nav-link" activeProps={{ className: "nav-link active" }}>
+          About
+        </Link>
       </nav>
     </header>
   );
