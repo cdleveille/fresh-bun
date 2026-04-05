@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     sourcemap: false,
     minify: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: resolve(root, "index.html"),
         sw: resolve(root, "sw.ts"),

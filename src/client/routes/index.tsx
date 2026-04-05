@@ -6,7 +6,7 @@ import { apiClient } from "@/client/helpers/network";
 export const Route = createFileRoute("/")({
   component: Home,
   loader: async () => {
-    const res = await apiClient.http.hello.$get({ query: {} });
+    const res = await apiClient.http.hello.$get({ query: { message: "hello from client!" } });
     const data = await res.json();
     return data;
   },
