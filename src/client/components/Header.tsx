@@ -6,7 +6,6 @@ export const Header = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <a href="/api">API</a>
       </nav>
     </header>
   );
