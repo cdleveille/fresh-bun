@@ -6,9 +6,6 @@ out
 dist
 *.tgz
 
-# generated
-src/scripts/assets.generated.ts
-
 # code coverage
 coverage
 *.lcov
