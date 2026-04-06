@@ -13,16 +13,7 @@ export const AppInfo = {
   themeColor: "#14151a",
 };
 
-export enum Env {
-  Production = "production",
-  Development = "development",
-}
-
 export enum Path {
   Public = "dist/public",
   Client = "src/client",
-}
-
-export enum ErrorMessage {
-  _500 = "Internal Server Error",
 }

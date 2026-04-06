@@ -7,7 +7,7 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
 
 import { Config } from "./src/server/config";
-import { AppInfo, Env, Path } from "./src/shared/constants";
+import { AppInfo, Path } from "./src/shared/constants";
 
 const root = Path.Client;
 const outDir = Path.Public;
@@ -90,7 +90,7 @@ export default defineConfig(({ mode }) => ({
       },
     },
     ...[
-      mode === Env.Production
+      mode === "production"
         ? viteStaticCopy({
             targets: toCopy.map(path => ({
               src: path,
