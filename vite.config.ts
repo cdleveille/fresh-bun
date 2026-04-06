@@ -93,7 +93,7 @@ export default defineConfig(({ mode }) => ({
       mode === Env.Production
         ? viteStaticCopy({
             targets: toCopy.map(path => ({
-              src: resolve(root, path),
+              src: path,
               dest: "./",
             })),
           })
