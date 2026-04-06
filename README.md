@@ -55,7 +55,7 @@ bun start
 
 ```bash
 bun build:app
-./dist/main
+./dist/app
 ```
 
 **Option 3:** Build Docker image and run in container:
