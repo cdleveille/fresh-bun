@@ -16,4 +16,5 @@ export const AppInfo = {
 export enum Path {
   Public = "dist/public",
   Client = "src/client",
+  Assets = "src/scripts/assets.generated.ts",
 }

@@ -4,7 +4,7 @@ import { join, relative } from "node:path";
 import { Path } from "@/shared/constants";
 
 const publicDir = Path.Public;
-const outputFile = "src/scripts/assets.generated.ts";
+const outputFile = Path.Assets;
 
 const scanDir = (dir: string) => {
   const files: string[] = [];
