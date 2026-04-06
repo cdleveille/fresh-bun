@@ -12,12 +12,12 @@
     "check": "biome check .",
     "tsc": "tsc -p tsconfig.json",
     "concurrent": "concurrently --prefix \"[{name}]\" -c \"bgBlue.bold,bgGreen.bold\"",
-    "dev": "bun concurrent --names \"server,client\" \"bun --hot src/server/index.ts\" \"bunx --bun vite\"",
+    "dev": "bun concurrent --names \"server,client\" \"bun --hot src/server/app.ts\" \"bunx --bun vite\"",
     "build:client": "bunx --bun vite build && bun scripts/workbox.ts",
-    "build:server": "bun build --compile --minify --sourcemap --bytecode --target bun --outfile dist/main src/server/index.ts",
+    "build:server": "bun build --compile --minify --bytecode --target bun --outfile dist/app src/server/app.ts",
     "build:app": "bun build:client && bun build:server",
     "build": "bun build:app",
-    "start": "bun src/server/index.ts"
+    "start": "bun src/server/app.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.10",

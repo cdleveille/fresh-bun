@@ -5,7 +5,7 @@
       "name": "server",
       "type": "bun",
       "request": "launch",
-      "program": "${workspaceFolder}/src/server/index.ts",
+      "program": "${workspaceFolder}/src/server/app.ts",
       "cwd": "${workspaceFolder}",
       "watchMode": "hot",
       "internalConsoleOptions": "neverOpen",

@@ -14,7 +14,7 @@ RUN bun install --ignore-scripts --frozen-lockfile
 COPY --link . .
 
 RUN bun build:app && \
-  chmod +x ./dist/main
+  chmod +x ./dist/app
 
 FROM gcr.io/distroless/base
 
@@ -23,4 +23,4 @@ COPY --from=build /app/dist /app/dist
 WORKDIR /app
 
 EXPOSE 3000
-ENTRYPOINT ["./dist/main"]
+ENTRYPOINT ["./dist/app"]

@@ -1,20 +1,14 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { upgradeWebSocket } from "hono/bun";
-import { z } from "zod";
 
-const parseWsMessage = <T>(schema: z.ZodType<T>, data: unknown): T =>
-  schema.parse(JSON.parse(data as string));
-
-const messageSchema = z.object({ message: z.string() });
-
-const messageOptionalSchema = z.object({ message: z.string().optional() });
+import { messageOptionalSchema, messageSchema, parseSchema } from "@/server/schema";
 
 const wsApi = new Hono().get(
   "/hello",
   upgradeWebSocket(() => ({
     onMessage(event, ws) {
-      const { message } = parseWsMessage(messageSchema, event.data);
+      const { message } = parseSchema(messageSchema, event.data);
       console.log(`WS /ws/hello "${message}"`);
       ws.send(JSON.stringify({ message: "hello from bun!" }));
     },
