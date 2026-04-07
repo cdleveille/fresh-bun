@@ -106,5 +106,7 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
+  // Only handle same-origin requests — let the browser handle cross-origin (CDN, etc.) directly
+  if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(handleFetchRequest(event.request));
 });
