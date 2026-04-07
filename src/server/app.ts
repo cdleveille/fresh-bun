@@ -1,13 +1,16 @@
-import { Hono } from "hono";
+import { swaggerUI } from "@hono/swagger-ui";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { websocket } from "hono/bun";
 
 import { staticAssets } from "@/scripts/assets.generated";
 import { api } from "@/server/api";
 import { Config } from "@/server/config";
 
-const app = new Hono();
+const app = new OpenAPIHono();
 
 app.route("/api", api);
+
+app.get("/api", swaggerUI({ url: "/api/openapi.json" }));
 
 if (Config.IS_PROD) {
   app.get("/*", async c => {

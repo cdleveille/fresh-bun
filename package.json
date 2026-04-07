@@ -36,6 +36,8 @@
     "workbox-build": "^7.4.0"
   },
   "dependencies": {
+    "@hono/swagger-ui": "^0.6.1",
+    "@hono/zod-openapi": "^1.2.4",
     "@hono/zod-validator": "^0.7.6",
     "@tanstack/react-query": "^5.96.2",
     "@tanstack/react-router": "^1.168.10",
