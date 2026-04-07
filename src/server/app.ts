@@ -10,7 +10,7 @@ const app = new OpenAPIHono();
 
 app.route("/api", api);
 
-app.get("/api", swaggerUI({ url: "/api/openapi.json" }));
+app.get("/api/docs", swaggerUI({ url: "/api/openapi.json" }));
 
 if (Config.IS_PROD) {
   app.get("/*", async c => {
