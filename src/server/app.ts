@@ -1,5 +1,5 @@
-import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { Scalar } from "@scalar/hono-api-reference";
 import { websocket } from "hono/bun";
 
 import { staticAssets } from "@/scripts/assets.generated";
@@ -10,7 +10,7 @@ const app = new OpenAPIHono();
 
 app.route("/api", api);
 
-app.get("/api/docs", swaggerUI({ url: "/api/openapi.json" }));
+app.get("/api/docs", Scalar({ url: "/api/openapi.json", theme: "kepler", darkMode: true }));
 
 if (Config.IS_PROD) {
   app.get("/*", async c => {

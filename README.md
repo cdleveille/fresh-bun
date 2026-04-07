@@ -16,7 +16,7 @@ Single-page web app project template curated for performance, developer experien
 
 - **100% Type-Safe API**: Full static type safety between the server and client. See [api.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/server/api.ts) and [useApi.ts](https://github.com/cdleveille/fresh-bun/blob/main/src/client/hooks/useApi.ts) for simple HTTP and WebSocket examples.
 
-- **Automatic API Documentation**: Interactive Swagger UI documentation is automatically generated and served at `/api`. The raw OpenAPI JSON spec is available at `/api/openapi.json`.
+- **Automatic API Documentation**: Interactive Scalar documentation is automatically generated and served at `/api`. The raw OpenAPI JSON spec is available at `/api/openapi.json`.
 
 - **Progressive Web App Capable**: Meets PWA requirements for an installable, native app-like experience. Scores a near-perfect [PageSpeed Insights](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Ffresh-bun.fly.dev&form_factor=desktop) report out of the box.
 
