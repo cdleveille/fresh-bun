@@ -60,4 +60,5 @@ export const api = new OpenAPIHono()
 api.doc("/openapi.json", {
   openapi: "3.0.0",
   info: { title: "fresh-bun", version: "0.1.0" },
+  servers: [{ url: "/api" }],
 });
