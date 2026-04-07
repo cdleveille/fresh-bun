@@ -5,17 +5,6 @@ import { messageOptionalSchema, messageSchema, parseSchema } from "@/server/sche
 
 const responseSchema = z.object({ message: z.string() });
 
-const wsApi = new OpenAPIHono().get(
-  "/hello",
-  upgradeWebSocket(() => ({
-    onMessage(event, ws) {
-      const { message } = parseSchema(messageSchema, event.data);
-      console.log(`WS /ws/hello "${message}"`);
-      ws.send(JSON.stringify({ message: "hello from bun!" }));
-    },
-  })),
-);
-
 const getHelloRoute = createRoute({
   method: "get",
   path: "/hello",
@@ -44,8 +33,18 @@ const postHelloRoute = createRoute({
   },
 });
 
+const wsApi = new OpenAPIHono().get(
+  "/hello",
+  upgradeWebSocket(() => ({
+    onMessage(event, ws) {
+      const { message } = parseSchema(messageSchema, event.data);
+      console.log(`WS /ws/hello "${message}"`);
+      ws.send(JSON.stringify({ message: "hello from bun!" }));
+    },
+  })),
+);
+
 export const api = new OpenAPIHono()
-  .route("/ws", wsApi)
   .openapi(getHelloRoute, c => {
     const { message } = c.req.valid("query");
     console.log(`GET /api/hello${message ? ` "${message}"` : ""}`);
@@ -55,9 +54,10 @@ export const api = new OpenAPIHono()
     const { message } = c.req.valid("json");
     console.log(`POST /api/hello "${message}"`);
     return c.json({ message: "hello from bun!" });
-  });
+  })
+  .route("/ws", wsApi);
 
 api.doc("/openapi.json", {
   openapi: "3.0.0",
-  info: { title: "fresh-bun API", version: "1.0.0" },
+  info: { title: "fresh-bun", version: "0.1.0" },
 });
