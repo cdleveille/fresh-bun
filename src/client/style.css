@@ -94,14 +94,6 @@ nav {
   color: var(--accent);
 }
 
-.scalar-wrapper {
-  position: fixed;
-  top: 3.25rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 main {
   display: flex;
   flex-direction: column;
