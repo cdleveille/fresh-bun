@@ -10,7 +10,15 @@ const app = new OpenAPIHono();
 
 app.route("/api", api);
 
-app.get("/api/docs", Scalar({ url: "/api/openapi.json", theme: "kepler", darkMode: true }));
+app.get(
+  "/api/docs",
+  Scalar({
+    url: "/api/openapi.json",
+    theme: "kepler",
+    darkMode: true,
+    customCss: "html,body{background:#000212}",
+  }),
+);
 
 if (Config.IS_PROD) {
   app.get("/*", async c => {
