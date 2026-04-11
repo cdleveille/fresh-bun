@@ -42,4 +42,3 @@ lines.push("};");
 lines.push("");
 
 await Bun.write(outputFile, lines.join("\n"));
-console.log(`Generated ${outputFile} with ${files.length} asset(s)`);

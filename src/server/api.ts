@@ -1,9 +1,7 @@
-import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { upgradeWebSocket } from "hono/bun";
 
 import { messageOptionalSchema, messageSchema, parseSchema } from "@/server/schema";
-
-const responseSchema = z.object({ message: z.string() });
 
 const getHelloRoute = createRoute({
   method: "get",
@@ -13,7 +11,7 @@ const getHelloRoute = createRoute({
   },
   responses: {
     200: {
-      content: { "application/json": { schema: responseSchema } },
+      content: { "application/json": { schema: messageSchema } },
       description: "Returns a hello message",
     },
   },
@@ -27,7 +25,7 @@ const postHelloRoute = createRoute({
   },
   responses: {
     200: {
-      content: { "application/json": { schema: responseSchema } },
+      content: { "application/json": { schema: messageSchema } },
       description: "Echoes back a hello message",
     },
   },

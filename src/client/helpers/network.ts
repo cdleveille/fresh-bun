@@ -11,3 +11,17 @@ const wsBase = Config.IS_PROD ? httpBase : `http://localhost:${import.meta.env.P
 export const apiClient = { http: hc<TApi>(httpBase), ws: hc<TApi>(wsBase).ws };
 
 export const queryClient = new QueryClient();
+
+export const sendWsRequest = <TResponse>(
+  createWs: () => WebSocket,
+  message: unknown,
+): Promise<TResponse> =>
+  new Promise((resolve, reject) => {
+    const ws = createWs();
+    ws.onopen = () => ws.send(JSON.stringify(message));
+    ws.onmessage = event => {
+      resolve(JSON.parse(event.data) as TResponse);
+      ws.close();
+    };
+    ws.onerror = reject;
+  });

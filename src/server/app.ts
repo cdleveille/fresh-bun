@@ -32,7 +32,10 @@ if (Config.IS_PROD) {
 Bun.serve({
   port: Config.PORT,
   fetch: app.fetch,
+  development: !Config.IS_PROD,
   websocket,
 });
 
-console.log(`Server listening on http://localhost:${Config.PORT}`);
+console.log(
+  `Server listening on http://localhost:${Config.PORT} in ${Config.IS_PROD ? "production" : "development"} mode`,
+);
