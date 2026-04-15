@@ -20,10 +20,10 @@
     "start": "bun src/server/app.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.11",
+    "@biomejs/biome": "2.4.12",
     "@evilmartians/lefthook": "^2.1.5",
-    "@rolldown/plugin-babel": "^0.2.2",
-    "@tanstack/router-plugin": "^1.167.12",
+    "@rolldown/plugin-babel": "^0.2.3",
+    "@tanstack/router-plugin": "^1.167.22",
     "@types/bun": "^1.3.12",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -36,11 +36,11 @@
     "workbox-build": "^7.4.0"
   },
   "dependencies": {
-    "@hono/zod-openapi": "^1.2.4",
+    "@hono/zod-openapi": "^1.3.0",
     "@hono/zod-validator": "^0.7.6",
     "@scalar/hono-api-reference": "^0.10.7",
-    "@tanstack/react-query": "^5.97.0",
-    "@tanstack/react-router": "^1.168.13",
+    "@tanstack/react-query": "^5.99.0",
+    "@tanstack/react-router": "^1.168.22",
     "hono": "^4.12.12",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
