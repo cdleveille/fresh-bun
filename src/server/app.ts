@@ -1,26 +1,17 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { Scalar } from "@scalar/hono-api-reference";
 import { websocket } from "hono/bun";
 
 import { staticAssets } from "@/scripts/assets.generated";
 import { api } from "@/server/api";
 import { Config } from "@/server/config";
 
+const { PORT, IS_PROD, MODE } = Config;
+
 const app = new OpenAPIHono();
 
 app.route("/api", api);
 
-app.get(
-  "/api/docs",
-  Scalar({
-    url: "/api/openapi.json",
-    theme: "kepler",
-    darkMode: true,
-    customCss: "html,body{background:#000212}",
-  }),
-);
-
-if (Config.IS_PROD) {
+if (IS_PROD) {
   app.get("/*", async c => {
     const path = c.req.path === "/" ? "/index.html" : c.req.path;
     const filePath = staticAssets[path] ?? staticAssets["/index.html"];
@@ -30,12 +21,10 @@ if (Config.IS_PROD) {
 }
 
 Bun.serve({
-  port: Config.PORT,
+  port: PORT,
   fetch: app.fetch,
-  development: !Config.IS_PROD,
+  development: !IS_PROD,
   websocket,
 });
 
-console.log(
-  `Server listening on http://localhost:${Config.PORT} in ${Config.IS_PROD ? "production" : "development"} mode`,
-);
+console.log(`Server listening on http://localhost:${PORT} in ${MODE} mode`);
