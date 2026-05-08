@@ -24,7 +24,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     open: true,
     hmr: true,
-    strictPort: true,
     proxy: {
       "^/api/": {
         target: `http://localhost:${Config.PORT}`,
