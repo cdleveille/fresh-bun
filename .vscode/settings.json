@@ -1,18 +1,20 @@
 {
-  "editor.detectIndentation": false,
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "files.insertFinalNewline": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "always"
+  },
   "editor.defaultFormatter": "biomejs.biome",
+  "editor.detectIndentation": false,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit"
-  },
-  "[markdown]": {
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+
+  "files.insertFinalNewline": true,
+
+  "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[html]": {
+  "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
