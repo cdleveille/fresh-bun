@@ -6,7 +6,7 @@
   "license": "MIT No Attribution",
   "type": "module",
   "scripts": {
-    "postinstall": "bun src/scripts/lefthook.ts",
+    "prepare": "lefthook install",
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check .",
