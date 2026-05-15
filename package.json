@@ -23,6 +23,7 @@
     "@biomejs/biome": "2.4.15",
     "@evilmartians/lefthook": "^2.1.6",
     "@rolldown/plugin-babel": "^0.2.3",
+    "babel-plugin-react-compiler": "^1.0.0",
     "@tanstack/router-plugin": "^1.168.0",
     "@types/bun": "^1.3.14",
     "@types/react": "^19.2.14",
