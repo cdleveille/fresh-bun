@@ -1,7 +1,7 @@
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { Scalar } from "@scalar/hono-api-reference";
 import { upgradeWebSocket } from "hono/bun";
 
+import { docs } from "@/server/middleware";
 import { messageOptionalSchema, messageSchema, parseSchema } from "@/server/schema";
 
 export const api = new OpenAPIHono()
@@ -58,17 +58,4 @@ export const api = new OpenAPIHono()
       })),
     ),
   )
-  .doc("/openapi.json", {
-    openapi: "3.0.0",
-    info: { title: "fresh-bun", version: "0.1.0" },
-    servers: [{ url: "/api" }],
-  })
-  .get(
-    "/docs",
-    Scalar({
-      url: "/api/openapi.json",
-      theme: "kepler",
-      darkMode: true,
-      customCss: "html,body{background:#000212}",
-    }),
-  );
+  .route("/", docs);

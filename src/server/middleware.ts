@@ -1,4 +1,5 @@
-import type { OpenAPIHono } from "@hono/zod-openapi";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import { Scalar } from "@scalar/hono-api-reference";
 
 import { staticAssets } from "@/scripts/assets.generated";
 
@@ -10,3 +11,19 @@ export const serveStatic = (app: OpenAPIHono) => {
     return new Response(Bun.file(filePath));
   });
 };
+
+export const docs = new OpenAPIHono()
+  .doc("/openapi.json", {
+    openapi: "3.0.0",
+    info: { title: "fresh-bun", version: "0.1.0" },
+    servers: [{ url: "/api" }],
+  })
+  .get(
+    "/docs",
+    Scalar({
+      url: "/api/openapi.json",
+      theme: "kepler",
+      darkMode: true,
+      customCss: "html,body{background:#000212}",
+    }),
+  );
