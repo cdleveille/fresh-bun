@@ -1,11 +1,13 @@
-import { useLoaderData } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import BunLogo from "@/client/assets/bun.svg";
-import { useHttpHello, useWsHello } from "@/client/hooks/useApi";
+import { helloQueryOptions, useHttpHello, useWsHello } from "@/client/hooks/useApi";
 import { useCountStore } from "@/client/hooks/useCountStore";
 
 export const Home = () => {
-  const { message } = useLoaderData({ from: "/" });
+  const {
+    data: { message },
+  } = useSuspenseQuery(helloQueryOptions);
 
   const { mutate: httpHello } = useHttpHello();
   const { mutate: wsHello } = useWsHello();

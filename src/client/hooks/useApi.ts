@@ -1,8 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
+import { queryOptions, useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 import { apiClient, sendWsRequest } from "@/client/helpers/network";
 import type { TMessageRes } from "@/shared/types";
+
+export const helloQueryOptions = queryOptions({
+  queryKey: ["hello"],
+  queryFn: async () => {
+    const res = await apiClient.http.hello.$get({ query: { message: "hello from client!" } });
+    return res.json();
+  },
+});
 
 export const useHttpHello = () => {
   return useMutation({
