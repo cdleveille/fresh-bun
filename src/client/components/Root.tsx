@@ -1,7 +1,8 @@
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { Toaster } from "react-hot-toast";
 
-import { DevTools } from "@/client/components/DevTools";
 import { Header } from "@/client/components/Header";
 
 export const Root = () => {
@@ -9,7 +10,8 @@ export const Root = () => {
     <>
       <Header />
       <Outlet />
-      <DevTools />
+      <TanStackRouterDevtools />
+      <ReactQueryDevtools />
       <Toaster
         toastOptions={{
           style: {

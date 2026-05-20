@@ -5,9 +5,7 @@ import { helloQueryOptions, useHttpHello, useWsHello } from "@/client/hooks/useA
 import { useCountStore } from "@/client/hooks/useCountStore";
 
 export const Home = () => {
-  const {
-    data: { message },
-  } = useSuspenseQuery(helloQueryOptions);
+  const { data } = useSuspenseQuery(helloQueryOptions);
 
   const { mutate: httpHello } = useHttpHello();
   const { mutate: wsHello } = useWsHello();
@@ -16,7 +14,7 @@ export const Home = () => {
 
   return (
     <main>
-      <h1>{message}</h1>
+      <h1>{data.message}</h1>
       <BunLogo className="logo" width={250} height={225} />
       <div className="counter">
         <button type="button" className="counter-btn" onClick={minusCount}>

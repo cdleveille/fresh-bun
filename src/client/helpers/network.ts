@@ -6,7 +6,7 @@ import type { TApi } from "@/shared/types";
 
 const httpBase = `${location.origin}/api`;
 
-const wsBase = Config.IS_PROD ? httpBase : `http://localhost:${import.meta.env.PORT}/api`;
+const wsBase = Config.IS_PROD ? httpBase : `http://localhost:${Config.PORT}/api`;
 
 export const apiClient = { http: hc<TApi>(httpBase), ws: hc<TApi>(wsBase).ws };
 

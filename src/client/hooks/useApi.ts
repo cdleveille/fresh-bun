@@ -16,8 +16,7 @@ export const useHttpHello = () => {
   return useMutation({
     mutationFn: async () => {
       const res = await apiClient.http.hello.$post({ json: { message: "hello from client!" } });
-      const data = await res.json();
-      return data;
+      return res.json();
     },
     onSuccess: ({ message }) => toast.success(`HTTP: ${message}`),
   });
