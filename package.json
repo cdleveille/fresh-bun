@@ -20,16 +20,16 @@
     "start": "bun src/server/app.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.15",
-    "@evilmartians/lefthook": "^2.1.8",
+    "@biomejs/biome": "2.4.16",
+    "@evilmartians/lefthook": "^2.1.9",
     "@rolldown/plugin-babel": "^0.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
-    "@tanstack/router-plugin": "^1.168.11",
+    "@tanstack/router-plugin": "^1.168.13",
     "@types/bun": "^1.3.14",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
-    "concurrently": "^9.2.1",
+    "concurrently": "^10.0.1",
     "typescript": "^6.0.3",
     "vite": "^8.0.14",
     "vite-plugin-static-copy": "^4.1.0",
@@ -40,13 +40,13 @@
     "@hono/zod-validator": "^0.8.0",
     "@tanstack/react-query": "^5.100.14",
     "@tanstack/react-query-devtools": "^5.100.14",
-    "@tanstack/react-router": "^1.170.8",
+    "@tanstack/react-router": "^1.170.10",
     "@tanstack/react-router-devtools": "^1.167.0",
     "hono": "^4.12.23",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-hot-toast": "^2.6.0",
     "zod": "^4.4.3",
-    "zustand": "^5.0.13"
+    "zustand": "^5.0.14"
   }
 }
