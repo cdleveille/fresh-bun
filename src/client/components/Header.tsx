@@ -10,9 +10,6 @@ export const Header = () => {
         <Link to="/about" className="nav-link" activeProps={{ className: "nav-link active" }}>
           About
         </Link>
-        <Link to="/api" className="nav-link" activeProps={{ className: "nav-link active" }}>
-          API
-        </Link>
       </nav>
     </header>
   );

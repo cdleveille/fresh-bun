@@ -1,4 +1,4 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { Hono } from "hono";
 import { websocket } from "hono/bun";
 
 import { api } from "@/server/api";
@@ -7,7 +7,7 @@ import { serveStatic } from "@/server/middleware";
 
 const { PORT, IS_PROD, MODE } = Config;
 
-const app = new OpenAPIHono();
+const app = new Hono();
 
 app.route("/api", api);
 

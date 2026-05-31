@@ -1,53 +1,24 @@
-import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import { zValidator } from "@hono/zod-validator";
+import { Hono } from "hono";
 import { upgradeWebSocket } from "hono/bun";
 
-import { docs } from "@/server/middleware";
+import { onInvalid } from "@/server/middleware";
 import { messageOptionalSchema, messageSchema, parseSchema } from "@/server/schema";
 
-export const api = new OpenAPIHono()
-  .openapi(
-    createRoute({
-      method: "get",
-      path: "/hello",
-      request: {
-        query: messageOptionalSchema,
-      },
-      responses: {
-        200: {
-          content: { "application/json": { schema: messageSchema } },
-          description: "Sends a hello message.",
-        },
-      },
-    }),
-    c => {
-      const { message } = c.req.valid("query");
-      console.log(`GET /api/hello${message ? ` "${message}"` : ""}`);
-      return c.json({ message: "hello from bun!" });
-    },
-  )
-  .openapi(
-    createRoute({
-      method: "post",
-      path: "/hello",
-      request: {
-        body: { content: { "application/json": { schema: messageSchema } }, required: true },
-      },
-      responses: {
-        200: {
-          content: { "application/json": { schema: messageSchema } },
-          description: "Sends a hello message.",
-        },
-      },
-    }),
-    c => {
-      const { message } = c.req.valid("json");
-      console.log(`POST /api/hello "${message}"`);
-      return c.json({ message: "hello from bun!" });
-    },
-  )
+export const api = new Hono()
+  .get("/hello", zValidator("query", messageOptionalSchema, onInvalid), c => {
+    const { message } = c.req.valid("query");
+    console.log(`GET /api/hello${message ? ` "${message}"` : ""}`);
+    return c.json({ message: "hello from bun!" });
+  })
+  .post("/hello", zValidator("json", messageSchema, onInvalid), c => {
+    const { message } = c.req.valid("json");
+    console.log(`POST /api/hello "${message}"`);
+    return c.json({ message: "hello from bun!" });
+  })
   .route(
     "/ws",
-    new OpenAPIHono().get(
+    new Hono().get(
       "/hello",
       upgradeWebSocket(() => ({
         onMessage(event, ws) {
@@ -57,5 +28,4 @@ export const api = new OpenAPIHono()
         },
       })),
     ),
-  )
-  .route("/", docs);
+  );
