@@ -1,0 +1,8 @@
+# fresh-bun
+
+Single-page web app project template curated for performance, developer experience, and type safety.
+
+## Pages
+
+- [Home](/)
+- [About](/about)
