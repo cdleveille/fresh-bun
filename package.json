@@ -20,8 +20,8 @@
     "start": "bun src/server/app.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
-    "@evilmartians/lefthook": "^2.1.9",
+    "@biomejs/biome": "2.5.3",
+    "@evilmartians/lefthook": "^2.1.10",
     "@rolldown/plugin-babel": "^0.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "@tanstack/router-plugin": "^1.168.19",
@@ -30,7 +30,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^10.0.3",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.1.3",
     "vite-plugin-static-copy": "^4.1.1",
     "vite-plugin-svgr": "^5.2.0",
@@ -42,7 +42,7 @@
     "@tanstack/react-query-devtools": "^5.101.2",
     "@tanstack/react-router": "^1.170.17",
     "@tanstack/react-router-devtools": "^1.167.0",
-    "hono": "^4.12.27",
+    "hono": "^4.12.28",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hot-toast": "^2.6.0",
