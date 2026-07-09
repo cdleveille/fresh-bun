@@ -10,7 +10,7 @@
   "editor.tabSize": 2,
 
   "files.insertFinalNewline": true,
-
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
