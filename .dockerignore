@@ -10,6 +10,6 @@
 .dockerignore
 Dockerfile
 fly.toml
-lefthook.json
+lefthook.yaml
 LICENSE
 README.md
