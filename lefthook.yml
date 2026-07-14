@@ -1,0 +1,8 @@
+"$schema": "https://raw.githubusercontent.com/evilmartians/lefthook/master/schema.json"
+colors: false
+
+pre-commit:
+  commands:
+    format-staged:
+      run: bunx biome format --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
