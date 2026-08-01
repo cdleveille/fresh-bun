@@ -6,8 +6,8 @@ import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
 
-import { Config } from "./src/server/config";
-import { AppInfo, Path } from "./src/shared/constants";
+import { Config } from "./src/server/config.ts";
+import { AppInfo, Path } from "./src/shared/constants.ts";
 
 const root = Path.Client;
 const outDir = Path.Public;

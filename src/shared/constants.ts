@@ -1,4 +1,6 @@
-import { author, description, license, name, version } from "../../package.json";
+import { author, description, license, name, version } from "../../package.json" with {
+  type: "json",
+};
 
 export const AppInfo = {
   title: name,
