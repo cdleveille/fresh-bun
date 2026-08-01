@@ -1,8 +1,7 @@
 import { queryOptions, useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { apiClient, sendSocketRequest } from "@/client/helpers/network";
-import type { TMessageRes } from "@/shared/types";
+import { apiClient, socket } from "@/client/helpers/network";
 
 export const helloQueryOptions = queryOptions({
   queryKey: ["hello"],
@@ -24,9 +23,7 @@ export const useHttpHello = () => {
 
 export const useWsHello = () => {
   return useMutation({
-    mutationFn: () => {
-      return sendSocketRequest<TMessageRes>("hello", { message: "hello from client!" });
-    },
+    mutationFn: () => socket.emitWithAck("hello", { message: "hello from client!" }),
     onSuccess: ({ message }) => toast.success(`WS: ${message}`),
   });
 };
