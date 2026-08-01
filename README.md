@@ -6,6 +6,7 @@ Single-page web app project template curated for performance, developer experien
 
 - [Bun](https://bun.com) - server runtime, package manager
 - [Hono](https://hono.dev) - web app framework
+- [Socket.IO](https://socket.io) - real-time client/server communication
 - [React](https://react.dev) - user interface
 - [TanStack Router](https://tanstack.com/router) - client-side routing
 - [TanStack Query](https://tanstack.com/query), [Zustand](https://zustand-demo.pmnd.rs) - state management
