@@ -17,22 +17,22 @@
   --radius-full: 9999px;
 }
 
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #f0ece3;
-    --bg-surface: #ffffff;
-    --bg-raised: #e6e2d9;
-    --text: #1b1d24;
-    --text-muted: #3e3c38;
-    --accent: #1a6fc4;
-    --accent-dim: rgba(26, 111, 196, 0.09);
-    --accent-border: rgba(26, 111, 196, 0.38);
-    --border: rgba(0, 0, 0, 0.09);
-    --header-bg: rgba(240, 236, 227, 0.88);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --bg: #f2e8d5;
+    --bg-surface: #faf6ec;
+    --bg-raised: #e8dcc0;
+    --text: #2b2318;
+    --text-muted: #5c5340;
+    --accent: #4347be;
+    --accent-dim: rgba(67, 71, 190, 0.08);
+    --accent-border: rgba(67, 71, 190, 0.35);
+    --border: #ddd0b0;
+    --header-bg: rgba(242, 232, 213, 0.85);
+    --shadow-sm: 0 1px 3px rgba(43, 35, 24, 0.08);
+    --shadow-md: 0 4px 20px rgba(43, 35, 24, 0.12);
   }
-} */
+}
 
 *,
 *::before,
