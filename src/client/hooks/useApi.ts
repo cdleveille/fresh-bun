@@ -1,4 +1,4 @@
-import { queryOptions, useMutation } from "@tanstack/react-query";
+import { queryOptions, useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 import { apiClient, socket } from "@/client/helpers/network";
@@ -10,6 +10,8 @@ export const helloQueryOptions = queryOptions({
     return res.json();
   },
 });
+
+export const useHello = () => useSuspenseQuery(helloQueryOptions);
 
 export const useHttpHello = () => {
   return useMutation({

@@ -217,16 +217,26 @@ h1 {
   box-shadow: 0 0 0 1px var(--accent-border);
 }
 
-a {
+a,
+.link-btn {
   color: var(--accent);
   text-decoration: none;
   border-radius: var(--radius-sm);
   transition: opacity 0.15s ease;
 }
 
-a:hover {
+a:hover,
+.link-btn:hover {
   opacity: 0.75;
   text-decoration: underline;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 p {

@@ -5,5 +5,5 @@ import { helloQueryOptions } from "@/client/hooks/useApi";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(helloQueryOptions),
+  loader: ({ context: { queryClient } }) => queryClient.query(helloQueryOptions),
 });

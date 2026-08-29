@@ -1,4 +1,6 @@
-export const ErrorBoundary = ({ error }: { error: unknown }) => {
+import type { ErrorComponentProps } from "@tanstack/react-router";
+
+export const ErrorBoundary = ({ error, reset }: Partial<ErrorComponentProps>) => {
   const message = getErrorMessage(error);
 
   return (
@@ -10,12 +12,19 @@ export const ErrorBoundary = ({ error }: { error: unknown }) => {
         justifyContent: "center",
         alignItems: "center",
         rowGap: "2rem",
-        padding: "0 1rem",
+        padding: "1rem",
       }}
     >
       <h1>Error!</h1>
       <div style={{ color: "red", fontFamily: "monospace", fontSize: "1rem" }}>{message}</div>
-      <a href="/">Home</a>
+      <div style={{ display: "flex", columnGap: "2rem" }}>
+        {reset && (
+          <button type="button" className="link-btn" onClick={reset}>
+            Try again
+          </button>
+        )}
+        <a href="/">Home</a>
+      </div>
     </div>
   );
 };
