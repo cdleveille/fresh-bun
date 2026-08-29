@@ -1,5 +1,7 @@
-import type { Hono } from "hono";
+import { zValidator } from "@hono/zod-validator";
+import type { Hono, ValidationTargets } from "hono";
 import { HTTPException } from "hono/http-exception";
+import type { z } from "zod";
 
 import { staticAssets } from "@/scripts/assets.generated";
 import type { TAppEnv } from "@/shared/types";
@@ -13,6 +15,10 @@ export const serveStatic = (app: Hono<TAppEnv>) => {
   });
 };
 
-export const onInvalid = (result: { success: boolean }) => {
-  if (!result.success) throw new HTTPException(400);
-};
+export const validate = <T extends keyof ValidationTargets, K extends z.ZodType>(
+  target: T,
+  schema: K,
+) =>
+  zValidator(target, schema, (result: { success: boolean }) => {
+    if (!result.success) throw new HTTPException(400);
+  });
