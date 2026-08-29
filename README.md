@@ -45,21 +45,14 @@ bun dev
 
 ### Production
 
-**Option 1:** Build client and start server:
-
-```bash
-bun build:client
-bun start
-```
-
-**Option 2:** Build app and run standalone binary:
+**Option 1:** Build app and run standalone binary:
 
 ```bash
 bun build:app
 ./dist/app
 ```
 
-**Option 3:** Build Docker image and run in container:
+**Option 2:** Build Docker image and run in container:
 
 ```bash
 docker build -t fresh-bun .
