@@ -18,25 +18,20 @@ export default defineConfig(({ mode }) => ({
   root: resolve(root),
   resolve: { tsconfigPaths: true },
   define: {
-    "import.meta.env.MODE": JSON.stringify(mode),
     "import.meta.env.PORT": JSON.stringify(Config.PORT),
   },
   server: {
     open: true,
-    hmr: true,
     proxy: {
       "^/api/": {
         target: `http://localhost:${Config.PORT}`,
         changeOrigin: true,
-        ws: true,
       },
     },
   },
   build: {
     outDir: resolve(outDir),
     emptyOutDir: true,
-    sourcemap: false,
-    minify: true,
     rolldownOptions: {
       input: {
         main: resolve(root, "index.html"),
@@ -44,8 +39,12 @@ export default defineConfig(({ mode }) => ({
       },
       output: {
         manualChunks: path => {
-          if (path.includes("node_modules")) return "vendor";
-          return null;
+          if (!path.includes("node_modules")) return null;
+          // Handle scoped packages (@scope/name) so each package gets its own chunk.
+          const afterNodeModules = path.split("node_modules/").pop() ?? "";
+          const [scopeOrName, maybeName] = afterNodeModules.split("/");
+          const pkgName = scopeOrName.startsWith("@") ? `${scopeOrName}/${maybeName}` : scopeOrName;
+          return `vendor/${pkgName}`;
         },
         chunkFileNames: "assets/[name]~[hash].js",
         entryFileNames: entry => {
@@ -88,15 +87,12 @@ export default defineConfig(({ mode }) => ({
           .replace(/__themeColor__/g, AppInfo.themeColor);
       },
     },
-    ...[
-      mode === "production"
-        ? viteStaticCopy({
-            targets: toCopy.map(path => ({
-              src: path,
-              dest: "./",
-            })),
-          })
-        : [],
-    ],
+    mode === "production" &&
+      viteStaticCopy({
+        targets: toCopy.map(path => ({
+          src: path,
+          dest: "./",
+        })),
+      }),
   ],
 }));
