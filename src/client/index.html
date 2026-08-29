@@ -43,12 +43,12 @@
       sizes="180x180"
     />
     <script>
-      // Set the theme attribute before first paint to avoid a flash of the wrong theme.
-      (function () {
+      // Set the theme attribute before first paint to avoid a flash of the wrong theme
+      (() => {
         var stored;
         try {
           stored = JSON.parse(localStorage.getItem("theme")).state.theme;
-        } catch (_e) {
+        } catch {
           stored = null;
         }
         var theme =
