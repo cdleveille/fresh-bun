@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
+import { Theme } from "@/client/components/Theme";
+
 export const Header = () => {
   return (
     <header className="site-header">
@@ -10,6 +12,7 @@ export const Header = () => {
         <Link to="/about" className="nav-link" activeProps={{ className: "nav-link active" }}>
           About
         </Link>
+        <Theme />
       </nav>
     </header>
   );

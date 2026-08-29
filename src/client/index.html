@@ -42,6 +42,24 @@
       href="icons/icon_180x180.png"
       sizes="180x180"
     />
+    <script>
+      // Set the theme attribute before first paint to avoid a flash of the wrong theme.
+      (function () {
+        var stored;
+        try {
+          stored = JSON.parse(localStorage.getItem("theme")).state.theme;
+        } catch (_e) {
+          stored = null;
+        }
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <link rel="stylesheet" href="style.css" />
     <link rel="manifest" href="manifest.json" />
     <script src="main.tsx" type="module"></script>

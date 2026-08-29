@@ -14,9 +14,12 @@ export const Root = () => {
       <ReactQueryDevtools />
       <Toaster
         toastOptions={{
+          position: "bottom-center",
           style: {
-            background: "#13151d",
-            color: "#e2ddd5",
+            background: "var(--bg-raised)",
+            color: "var(--text)",
+            border: "1px solid var(--border)",
+            boxShadow: "var(--shadow-md)",
           },
         }}
       />
