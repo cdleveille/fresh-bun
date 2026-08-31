@@ -1,10 +1,10 @@
 import { resolve } from "node:path";
-import babel from "@rolldown/plugin-babel";
+import reactCompiler from "@acusti/vite-plugin-react-compiler";
+import svgReact from "@acusti/vite-plugin-svg-react";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
-import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
+import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import svgr from "vite-plugin-svgr";
 
 import { Config } from "./src/server/config.ts";
 import { AppInfo, Path } from "./src/shared/constants.ts";
@@ -67,14 +67,8 @@ export default defineConfig(({ mode }) => ({
       routeFileIgnorePattern: "routeTree.gen.ts",
     }),
     viteReact(),
-    babel({ presets: [reactCompilerPreset()] }),
-    svgr({
-      svgrOptions: {
-        exportType: "default",
-        ref: true,
-      },
-      include: "**/*.svg",
-    }),
+    reactCompiler(),
+    svgReact(),
     {
       name: "html-transform",
       transformIndexHtml(html) {

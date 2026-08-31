@@ -1,4 +1,4 @@
-import BunLogo from "@/client/assets/bun.svg";
+import BunLogo from "@/client/assets/bun.svg?react";
 import { useHello, useHttpHello, useWsHello } from "@/client/hooks/useApi";
 import { useCount } from "@/client/hooks/useCount";
 
