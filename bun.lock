@@ -21,8 +21,8 @@
         "zustand": "^5.0.15",
       },
       "devDependencies": {
-        "@acusti/vite-plugin-react-compiler": "^0.3.0",
-        "@acusti/vite-plugin-svg-react": "^0.2.0",
+        "@acusti/vite-plugin-react-compiler": "0.3.0",
+        "@acusti/vite-plugin-svg-react": "0.2.0",
         "@biomejs/biome": "2.5.11",
         "@evilmartians/lefthook": "^2.1.12",
         "@tanstack/router-plugin": "^1.168.35",
