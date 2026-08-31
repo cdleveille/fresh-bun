@@ -92,7 +92,7 @@ nav {
   color: var(--accent);
 }
 
-.theme-toggle {
+.theme-cycle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,15 +109,15 @@ nav {
     background 0.15s ease;
 }
 
-.theme-toggle-icon {
+.theme-cycle-icon {
   display: inline-block;
 }
 
-.theme-toggle-icon--system {
+.theme-cycle-icon--system {
   transform: translateY(-0.1em);
 }
 
-.theme-toggle:hover {
+.theme-cycle:hover {
   color: var(--text);
   background: var(--border);
 }

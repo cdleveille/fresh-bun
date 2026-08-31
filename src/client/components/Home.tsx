@@ -1,6 +1,6 @@
 import BunLogo from "@/client/assets/bun.svg";
 import { useHello, useHttpHello, useWsHello } from "@/client/hooks/useApi";
-import { useCountStore } from "@/client/hooks/useCountStore";
+import { useCount } from "@/client/hooks/useCount";
 
 export const Home = () => {
   const { data } = useHello();
@@ -8,7 +8,7 @@ export const Home = () => {
   const { mutate: httpHello } = useHttpHello();
   const { mutate: wsHello } = useWsHello();
 
-  const { count, minusCount, plusCount } = useCountStore();
+  const { count, minusCount, plusCount } = useCount();
 
   return (
     <main>

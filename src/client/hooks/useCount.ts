@@ -3,7 +3,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 import type { TCountStore } from "@/shared/types";
 
-export const useCountStore = create<TCountStore>()(
+export const useCount = create<TCountStore>()(
   persist(
     set => ({
       count: 0,

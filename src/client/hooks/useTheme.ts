@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import type { TTheme, TThemeStore } from "@/shared/types";
+import type { TThemeStore } from "@/shared/types";
 
-export const useTheme = (): TTheme => {
+export const useTheme = () => {
   const theme = useThemeStore(state => state.theme);
   const setTheme = useThemeStore(state => state.setTheme);
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");

@@ -22,13 +22,13 @@ export const Theme = () => {
   return (
     <button
       type="button"
-      className="theme-toggle"
+      className="theme-cycle"
       onClick={cycleTheme}
       aria-label={`Theme: ${theme.theme}`}
       title={`Theme: ${theme.theme}`}
     >
       <span
-        className={`theme-toggle-icon${theme.theme === "system" ? " theme-toggle-icon--system" : ""}`}
+        className={`theme-cycle-icon${theme.theme === "system" ? " theme-cycle-icon--system" : ""}`}
       >
         {THEME_ICON[theme.theme]}
       </span>
