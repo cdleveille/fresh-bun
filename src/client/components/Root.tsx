@@ -13,8 +13,9 @@ export const Root = () => {
       <TanStackRouterDevtools />
       <ReactQueryDevtools />
       <Toaster
+        containerStyle={{ top: "4rem" }}
         toastOptions={{
-          position: "bottom-center",
+          position: "top-center",
           style: {
             background: "var(--bg-raised)",
             color: "var(--text)",

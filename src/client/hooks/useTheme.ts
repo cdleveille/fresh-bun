@@ -26,7 +26,7 @@ export const useTheme = () => {
     document.documentElement.dataset.theme = resolvedTheme;
   }, [resolvedTheme]);
 
-  return { theme, resolvedTheme, setTheme };
+  return { theme, setTheme, resolvedTheme };
 };
 
 const useThemeStore = create<TThemeStore>()(

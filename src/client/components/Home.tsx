@@ -13,7 +13,7 @@ export const Home = () => {
   return (
     <main>
       <h1>{data.message}</h1>
-      <BunLogo className="logo" width={250} height={225} />
+      <BunLogo className="logo" width={225} height={200} />
       <div className="counter">
         <button type="button" className="counter-btn" onClick={minusCount}>
           −

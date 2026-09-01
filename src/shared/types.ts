@@ -8,11 +8,14 @@ export type TAppEnv = { Bindings: Bun.Server<WebSocketData> };
 
 export type TThemeMode = "light" | "dark" | "system";
 
-export type TTheme = {
+export type TThemeStore = {
   theme: TThemeMode;
   setTheme: (theme: TThemeMode) => void;
-  resolvedTheme: "light" | "dark";
 };
+
+export type TTheme = {
+  resolvedTheme: "light" | "dark";
+} & TThemeStore;
 
 export type TAppContext = {
   theme: TTheme;
@@ -22,11 +25,6 @@ export type TCountStore = {
   count: number;
   minusCount: () => void;
   plusCount: () => void;
-};
-
-export type TThemeStore = {
-  theme: TThemeMode;
-  setTheme: (theme: TThemeMode) => void;
 };
 
 export type TReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
