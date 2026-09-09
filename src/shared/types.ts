@@ -6,25 +6,21 @@ export type TApi = typeof api;
 
 export type TAppEnv = { Bindings: Bun.Server<WebSocketData> };
 
-export type TThemeMode = "light" | "dark" | "system";
+export type TTheme = "light" | "dark";
 
 export type TThemeStore = {
-  theme: TThemeMode;
-  setTheme: (theme: TThemeMode) => void;
-};
-
-export type TTheme = {
-  resolvedTheme: "light" | "dark";
-} & TThemeStore;
-
-export type TAppContext = {
   theme: TTheme;
+  setTheme: (theme: TTheme) => void;
 };
 
 export type TCountStore = {
   count: number;
   minusCount: () => void;
   plusCount: () => void;
+};
+
+export type TAppContext = {
+  theme: TThemeStore;
 };
 
 export type TReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;

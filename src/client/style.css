@@ -109,12 +109,8 @@ nav {
     background 0.15s ease;
 }
 
-.theme-cycle-icon {
+.theme-toggle-icon {
   display: inline-block;
-}
-
-.theme-cycle-icon--system {
-  transform: translateY(-0.1em);
 }
 
 .theme-cycle:hover {
