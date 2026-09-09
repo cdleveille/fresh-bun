@@ -1,24 +1,26 @@
 # syntax = docker/dockerfile:1
 
-FROM oven/bun:latest AS build
+FROM oven/bun:1-slim AS build
 
 WORKDIR /app
 
 RUN apt-get update -qq && \
-  apt-get install -y build-essential pkg-config python-is-python3
+  apt-get install -y --no-install-recommends build-essential pkg-config python-is-python3 && \
+  rm -rf /var/lib/apt/lists/*
 
 COPY --link bun.lock package.json ./
 
-RUN bun install --ignore-scripts --frozen-lockfile
+RUN --mount=type=cache,target=/root/.bun/install/cache \
+  bun install --ignore-scripts --frozen-lockfile
 
 COPY --link . .
 
 RUN bun build:app && \
   chmod +x ./dist/app
 
-FROM gcr.io/distroless/base
+FROM gcr.io/distroless/base-debian12:nonroot
 
-COPY --from=build /app/dist /app/dist
+COPY --from=build --chown=nonroot:nonroot /app/dist /app/dist
 
 WORKDIR /app
 
