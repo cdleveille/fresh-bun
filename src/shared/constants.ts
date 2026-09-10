@@ -12,7 +12,10 @@ export const AppInfo = {
   },
   license,
   url: "https://fresh-bun.fly.dev",
-  themeColor: "#14151a",
+  theme: {
+    dark: "#000212",
+    light: "#f2e8d5",
+  },
 };
 
 export enum Path {

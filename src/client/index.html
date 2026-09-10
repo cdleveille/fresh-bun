@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1.0"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="application-name" content="__title__" />
     <meta name="description" content="__description__" />
     <meta name="author" content="__author.name__" />
-    <meta name="theme-color" content="__themeColor__" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="__theme.light__"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="__theme.dark__"
+    />
     <meta name="color-scheme" content="dark light" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="__title__" />
@@ -23,7 +32,8 @@
     <meta property="og:description" content="__description__" />
     <meta property="og:site_name" content="__title__" />
     <meta property="og:url" content="__url__" />
-    <meta property="og:image" content="icons/icon_512x512.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="__url__/icons/icon_512x512.png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="__title__" />
@@ -31,7 +41,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="__title__" />
     <meta name="twitter:description" content="__description__" />
-    <meta name="twitter:image" content="icons/icon_512x512.png" />
+    <meta name="twitter:image" content="__url__/icons/icon_512x512.png" />
     <meta name="robots" content="index, follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="canonical" href="__url__" />
@@ -82,5 +92,6 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>This app requires JavaScript to be enabled.</noscript>
   </body>
 </html>

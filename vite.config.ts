@@ -78,7 +78,8 @@ export default defineConfig(({ mode }) => ({
           .replace(/__description__/g, AppInfo.description)
           .replace(/__author.name__/g, AppInfo.author.name)
           .replace(/__author.url__/g, AppInfo.author.url)
-          .replace(/__themeColor__/g, AppInfo.themeColor);
+          .replace(/__theme.dark__/g, AppInfo.theme.dark)
+          .replace(/__theme.light__/g, AppInfo.theme.light);
       },
     },
     mode === "production" &&
