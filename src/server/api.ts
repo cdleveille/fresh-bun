@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 
-import { validate } from "@/server/middleware";
+import { corsMiddleware, validate } from "@/server/middleware";
 import { io } from "@/server/socket";
 import { messageOptionalSchema, messageSchema } from "@/shared/schema";
 
 export const api = new Hono()
+  .use(corsMiddleware)
   .get("/hello", validate("query", messageOptionalSchema), c => {
     const { message } = c.req.valid("query");
     console.log(`GET /api/hello${message ? ` "${message}"` : ""}`);
