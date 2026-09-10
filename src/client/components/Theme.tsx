@@ -5,17 +5,17 @@ import { useApp } from "@/client/hooks/useApp";
 export const Theme = () => {
   const { theme, setTheme } = useApp().theme;
 
-  const cycleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    toast.success(`Theme: ${next}`);
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    toast.success(`Theme: ${newTheme}`);
   };
 
   return (
     <button
       type="button"
-      className="theme-cycle"
-      onClick={cycleTheme}
+      className="theme-toggle"
+      onClick={toggleTheme}
       aria-label={`Theme: ${theme}`}
       title={`Theme: ${theme}`}
     >
