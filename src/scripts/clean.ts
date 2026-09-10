@@ -8,4 +8,4 @@ const stub =
   "// biome-ignore-all lint: auto-generated file\n" +
   "export const staticAssets: Record<string, string> = {};\n";
 
-writeFileSync("src/scripts/assets.generated.ts", stub);
+writeFileSync("src/scripts/assets.gen.ts", stub);

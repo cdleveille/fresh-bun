@@ -7,7 +7,7 @@ import { HTTPException } from "hono/http-exception";
 import { secureHeaders } from "hono/secure-headers";
 import type { z } from "zod";
 
-import { staticAssets } from "@/scripts/assets.generated";
+import { staticAssets } from "@/scripts/assets.gen";
 import { Config } from "@/server/config";
 import { AppInfo } from "@/shared/constants";
 import type { TAppEnv } from "@/shared/types";
