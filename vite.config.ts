@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => ({
           if (!path.includes("node_modules")) return null;
           // Handle scoped packages (@scope/name) so each package gets its own chunk.
           const afterNodeModules = path.split("node_modules/").pop() ?? "";
-          const [scopeOrName, maybeName] = afterNodeModules.split("/");
+          const [scopeOrName = "", maybeName] = afterNodeModules.split("/");
           const pkgName = scopeOrName.startsWith("@") ? `${scopeOrName}/${maybeName}` : scopeOrName;
           return `vendor/${pkgName}`;
         },

@@ -27,8 +27,7 @@ const lines = [
 ];
 const entries: string[] = [];
 
-for (let i = 0; i < files.length; i++) {
-  const file = files[i];
+for (const [i, file] of files.entries()) {
   const importPath = relative("src/scripts", file).replace(/\\/g, "/");
   const urlPath = `/${relative(publicDir, file).replace(/\\/g, "/")}`;
   lines.push(`import _a${i} from "./${importPath}" with { type: "file" };`);
