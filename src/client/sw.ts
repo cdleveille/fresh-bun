@@ -21,6 +21,8 @@ const cacheFirstWithoutHashFileTypes = [
   ".jpeg",
   ".png",
   ".webp",
+  ".ico",
+  ".svg",
 ];
 
 const HASH_REGEX = /~.{8}\.[a-zA-Z0-9]+$/;
@@ -33,25 +35,31 @@ const isCacheFirstWithoutHash = (filename: string) =>
   );
 
 const isCacheFirstRequest = (request: Request) => {
-  const { url } = request;
-  if (isCacheFirstWithoutHash(url)) return true;
-  if (isCacheFirstWithHash(url)) return true;
+  const { pathname } = new URL(request.url);
+  if (isCacheFirstWithoutHash(pathname)) return true;
+  if (isCacheFirstWithHash(pathname)) return true;
   return false;
 };
 
-const getFromCache = async (request: Request) => {
+const getFromCache = async (request: Request | string) => {
   const cache = await caches.open(cacheName);
   return await cache.match(request, { ignoreVary: true });
 };
 
-const fetchAndCacheResponse = async (request: Request) => {
-  const res = await fetch(request);
-  if (request.method !== "GET" || !res?.ok) return res;
-  const resClone = res.clone();
-  // To avoid delaying response, do not await async cache write
-  caches.open(cacheName).then(cache => cache.put(request, resClone));
+const cacheResponse = (request: Request, res: Response) => {
+  if (request.method === "GET" && res.ok) {
+    const resClone = res.clone();
+    // To avoid delaying response, do not await async cache write
+    caches
+      .open(cacheName)
+      .then(cache => cache.put(request, resClone))
+      .catch(error => console.error(`SW cache write failed for ${request.url}`, error));
+  }
   return res;
 };
+
+const fetchAndCacheResponse = async (request: Request) =>
+  cacheResponse(request, await fetch(request));
 
 const cacheFirstStrategy = async (request: Request) => {
   try {
@@ -73,7 +81,12 @@ const networkFirstStrategy = async (request: Request) => {
 
 const precacheUrls = async (urlsToPrecache: string[]) => {
   const cache = await caches.open(cacheName);
-  await cache.addAll(urlsToPrecache);
+  // Settle individually so one missing/failed asset doesn't abort precaching for everything else
+  const results = await Promise.allSettled(urlsToPrecache.map(url => cache.add(url)));
+  for (const [i, result] of results.entries()) {
+    if (result.status === "rejected")
+      console.error(`SW precache failed for ${urlsToPrecache[i]}`, result.reason);
+  }
 };
 
 const deleteOldCaches = async (newCacheName: string) => {
@@ -83,11 +96,26 @@ const deleteOldCaches = async (newCacheName: string) => {
   );
 };
 
-const handleFetchRequest = async (request: Request) => {
+const handleFetchRequest = async (event: FetchEvent) => {
+  const { request } = event;
   if (isCacheFirstRequest(request)) return await cacheFirstStrategy(request);
+
+  if (request.mode === "navigate") {
+    const preloadRes = await event.preloadResponse;
+    if (preloadRes) return cacheResponse(request, preloadRes);
+  }
+
   const res = await networkFirstStrategy(request);
-  if (!res?.ok) throw new Error(`Failed to fetch ${request.url}`);
-  return res;
+  if (res) return res;
+
+  // Offline with no exact cache match — for navigations, fall back to the precached app shell
+  // so client-side routing can still boot instead of surfacing a raw network error.
+  if (request.mode === "navigate") {
+    const shell = await getFromCache("/");
+    if (shell) return shell;
+  }
+
+  return Response.error();
 };
 
 self.addEventListener("install", event => {
@@ -106,7 +134,11 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-  // Only handle same-origin requests — let the browser handle cross-origin (CDN, etc.) directly
-  if (!event.request.url.startsWith(self.location.origin)) return;
-  event.respondWith(handleFetchRequest(event.request));
+  const { request } = event;
+  const { origin, pathname } = new URL(request.url);
+  // Only handle same-origin static assets — cross-origin requests, /api, and /socket.io
+  // (dynamic, non-precached traffic) are left to the network directly.
+  if (origin !== self.location.origin) return;
+  if (pathname.startsWith("/api/") || pathname.startsWith("/socket.io/")) return;
+  event.respondWith(handleFetchRequest(event));
 });
