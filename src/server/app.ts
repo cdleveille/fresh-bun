@@ -16,14 +16,19 @@ app.all("/socket.io/*", c => ws.handleRequest(c.req.raw, c.env));
 
 if (IS_PROD) serveStatic(app);
 
-Bun.serve({
+const server = Bun.serve({
   port: PORT,
   development: !IS_PROD,
   ...ws.handler(),
   fetch: app.fetch,
+  error(error) {
+    console.error(error);
+    return new Response("Internal Server Error", { status: 500 });
+  },
 });
 
-console.log(`Server listening on http://localhost:${PORT} in ${MODE} mode`);
+console.log(`Server listening on ${server.url} in ${MODE} mode`);
 
-process.on("SIGINT", () => process.exit(0));
-process.on("SIGTERM", () => process.exit(0));
+const shutdown = () => server.stop().then(() => process.exit(0));
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);

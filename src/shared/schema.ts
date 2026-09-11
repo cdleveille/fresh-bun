@@ -10,4 +10,4 @@ export type TClientToServerEvents = {
   hello: (data: TMessage, callback: (res: TMessage) => void) => void;
 };
 
-export type TServerToClientEvents = Record<string, never>;
+export type TServerToClientEvents = Record<never, never>;
