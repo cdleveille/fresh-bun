@@ -1,16 +1,14 @@
-import { author, description, license, name, version } from "../../package.json" with {
-  type: "json",
-};
+import pkg from "../../package.json" with { type: "json" };
 
 export const AppInfo = {
-  title: name,
-  version,
-  description,
+  title: pkg.name,
+  version: pkg.version,
+  description: pkg.description,
   author: {
-    name: author,
+    name: pkg.author,
     url: "https://cdleveille.net",
   },
-  license,
+  license: pkg.license,
   url: "https://fresh-bun.fly.dev",
   theme: {
     dark: "#000212",

@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "@acusti/vite-plugin-react-compiler": "0.5.0",
-    "@acusti/vite-plugin-svg-react": "0.2.0",
-    "@biomejs/biome": "2.5.12",
+    "@acusti/vite-plugin-svg-react": "0.4.0",
+    "@biomejs/biome": "2.5.13",
     "@evilmartians/lefthook": "^2.1.12",
     "@tanstack/router-plugin": "^1.168.37",
     "@types/bun": "^1.4.2",
@@ -31,7 +31,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2",
+    "vite": "^8.3.0",
     "vite-plugin-static-copy": "^4.1.1",
     "workbox-build": "^7.4.1"
   },
@@ -40,7 +40,7 @@
     "@socket.io/bun-engine": "^0.1.2",
     "@tanstack/react-query": "^5.102.8",
     "@tanstack/react-query-devtools": "^5.102.8",
-    "@tanstack/react-router": "^1.170.34",
+    "@tanstack/react-router": "^1.170.35",
     "@tanstack/react-router-devtools": "^1.167.1",
     "hono": "^4.13.7",
     "react": "^19.3.0",
@@ -48,7 +48,7 @@
     "react-hot-toast": "^2.6.0",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
-    "zod": "^4.6.1",
+    "zod": "^4.6.2",
     "zustand": "^5.0.15"
   }
 }
