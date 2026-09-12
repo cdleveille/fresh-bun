@@ -29,21 +29,22 @@ const HASH_REGEX = /~.{8}\.[a-zA-Z0-9]+$/;
 
 const isCacheFirstWithHash = (filename: string) => HASH_REGEX.test(filename);
 
-const isCacheFirstWithoutHash = (filename: string) =>
-  cacheFirstWithoutHashFileTypes.some(fileType =>
-    filename.toLowerCase().endsWith(fileType.toLowerCase()),
-  );
+const isCacheFirstWithoutHash = (filename: string) => {
+  return cacheFirstWithoutHashFileTypes.some(fileType => {
+    return filename.toLowerCase().endsWith(fileType.toLowerCase());
+  });
+};
 
-const isCacheFirstRequest = (request: Request) => {
-  const { pathname } = new URL(request.url);
+const isCacheFirstRequest = (req: Request) => {
+  const { pathname } = new URL(req.url);
   if (isCacheFirstWithoutHash(pathname)) return true;
   if (isCacheFirstWithHash(pathname)) return true;
   return false;
 };
 
-const getFromCache = async (request: Request | string) => {
+const getFromCache = async (req: Request | string) => {
   const cache = await caches.open(cacheName);
-  return await cache.match(request, { ignoreVary: true });
+  return await cache.match(req, { ignoreVary: true });
 };
 
 const isSafeToCache = (res: Response) => {
@@ -52,44 +53,44 @@ const isSafeToCache = (res: Response) => {
   return true;
 };
 
-const cacheResponse = (request: Request, res: Response) => {
-  if (request.method === "GET" && res.ok && isSafeToCache(res)) {
+const cacheResponse = (req: Request, res: Response) => {
+  if (req.method === "GET" && res.ok && isSafeToCache(res)) {
     caches
       .open(cacheName)
-      .then(cache => cache.put(request, res.clone()))
-      .catch(error => console.error(`SW cache write failed for ${request.url}`, error));
+      .then(cache => cache.put(req, res.clone()))
+      .catch(error => console.error(`SW cache write failed for ${req.url}`, error));
   }
   return res;
 };
 
-const fetchAndCacheResponse = async (request: Request) =>
-  cacheResponse(request, await fetch(request));
+const fetchAndCacheResponse = async (req: Request) => cacheResponse(req, await fetch(req));
 
-const cacheFirstStrategy = async (request: Request) => {
+const cacheFirstStrategy = async (req: Request) => {
   try {
-    const res = await getFromCache(request);
-    if (!res) throw new Error(`Cache miss for ${request.url}`);
+    const res = await getFromCache(req);
+    if (!res) throw new Error(`Cache miss for ${req.url}`);
     return res;
-  } catch (_error) {
-    return await fetchAndCacheResponse(request);
+  } catch {
+    return await fetchAndCacheResponse(req);
   }
 };
 
 const networkFirstStrategy = async (request: Request) => {
   try {
     return await fetchAndCacheResponse(request);
-  } catch (_error) {
+  } catch {
     return await getFromCache(request);
   }
 };
 
-const precacheUrls = async (urlsToPrecache: string[]) => {
+const precacheUrls = async (urls: string[]) => {
   const cache = await caches.open(cacheName);
   // Settle individually so one missing/failed asset doesn't abort precaching for everything else
-  const results = await Promise.allSettled(urlsToPrecache.map(url => cache.add(url)));
+  const results = await Promise.allSettled(urls.map(url => cache.add(url)));
   for (const [i, result] of results.entries()) {
-    if (result.status === "rejected")
-      console.error(`SW precache failed for ${urlsToPrecache[i]}`, result.reason);
+    if (result.status === "rejected") {
+      console.error(`SW precache failed for ${urls[i]}`, result.reason);
+    }
   }
 };
 
@@ -129,11 +130,15 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    Promise.all([
+    Promise.allSettled([
       deleteOldCaches(cacheName),
       self.clients.claim(),
       self.registration.navigationPreload?.enable(),
-    ]),
+    ]).then(results => {
+      for (const result of results) {
+        if (result.status === "rejected") console.error("SW activate step failed", result.reason);
+      }
+    }),
   );
 });
 

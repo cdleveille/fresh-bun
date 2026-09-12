@@ -31,7 +31,7 @@ export const ErrorBoundary = ({ error, reset }: Partial<ErrorComponentProps>) =>
 
 export const NotFound = () => <ErrorBoundary error={new Error("Not Found")} />;
 
-const getErrorMessage = (error: unknown) => {
+export const getErrorMessage = (error: unknown) => {
   if (error instanceof Error) return error.message;
   if (typeof error === "string") return error;
   if (error && typeof error === "object") {

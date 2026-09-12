@@ -19,7 +19,7 @@ Single-page web app project template curated for performance, developer experien
 
 - **Progressive Web App Capable**: Meets PWA requirements for an installable, native app-like experience. Scores a near-perfect [PageSpeed Insights](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Ffresh-bun.fly.dev&form_factor=desktop) report out of the box.
 
-- **Offline Support**: A [service worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) caches static assets and API responses, enabling offline functionality and faster subsequent loads with fewer requests to the server.
+- **Offline Support**: A [service worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) caches static assets, enabling offline functionality and faster subsequent loads with fewer requests to the server.
 
 - **Production Ready**: Includes a multi-stage `Dockerfile` that compiles the app into a standalone binary and runs it in a minimal distroless image. Pre-configured GitHub workflows for continuous integration and deploying to [fly.io](https://fly.io) on pushes to the `main` branch.
 
