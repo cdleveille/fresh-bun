@@ -46,13 +46,17 @@ const getFromCache = async (request: Request | string) => {
   return await cache.match(request, { ignoreVary: true });
 };
 
+const isSafeToCache = (res: Response) => {
+  if (res.status === 206 || res.type === "opaque" || res.type === "opaqueredirect") return false;
+  if (/no-store/i.test(res.headers.get("cache-control") ?? "")) return false;
+  return true;
+};
+
 const cacheResponse = (request: Request, res: Response) => {
-  if (request.method === "GET" && res.ok) {
-    const resClone = res.clone();
-    // To avoid delaying response, do not await async cache write
+  if (request.method === "GET" && res.ok && isSafeToCache(res)) {
     caches
       .open(cacheName)
-      .then(cache => cache.put(request, resClone))
+      .then(cache => cache.put(request, res.clone()))
       .catch(error => console.error(`SW cache write failed for ${request.url}`, error));
   }
   return res;
@@ -136,8 +140,6 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const { request } = event;
   const { origin, pathname } = new URL(request.url);
-  // Only handle same-origin static assets — cross-origin requests, /api, and /socket.io
-  // (dynamic, non-precached traffic) are left to the network directly.
   if (origin !== self.location.origin) return;
   if (pathname.startsWith("/api/") || pathname.startsWith("/socket.io/")) return;
   event.respondWith(handleFetchRequest(event));
