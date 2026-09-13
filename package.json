@@ -13,12 +13,12 @@
     "tsc": "tsc -p tsconfig.json",
     "dev:client": "bunx --bun vite",
     "dev:server": "bun --hot src/server/app.ts",
-    "dev": "bun run --parallel dev:client dev:server",
+    "dev": "bun --parallel dev:client dev:server",
     "build:client": "bunx --bun vite build && bun src/scripts/workbox.ts",
     "build:server": "bun src/scripts/assets.ts && NODE_ENV=production bun build --compile --minify --bytecode --target bun --outfile dist/app src/server/app.ts",
     "build:app": "bun build:client && bun build:server && bun src/scripts/clean.ts",
     "build": "bun build:app",
-    "start": "bun src/server/app.ts"
+    "start": "./dist/app"
   },
   "devDependencies": {
     "@acusti/vite-plugin-react-compiler": "0.5.0",
