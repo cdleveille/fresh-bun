@@ -55,9 +55,10 @@ const isSafeToCache = (res: Response) => {
 
 const cacheResponse = (req: Request, res: Response) => {
   if (req.method === "GET" && res.ok && isSafeToCache(res)) {
+    const resClone = res.clone();
     caches
       .open(cacheName)
-      .then(cache => cache.put(req, res.clone()))
+      .then(cache => cache.put(req, resClone))
       .catch(error => console.error(`SW cache write failed for ${req.url}`, error));
   }
   return res;
