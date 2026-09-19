@@ -62,7 +62,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     tanstackRouter({
       target: "react",
-      autoCodeSplitting: true,
+      autoCodeSplitting: false,
       routesDirectory: resolve(root, "routes"),
       generatedRouteTree: resolve(root, "routes", "routeTree.gen.ts"),
       routeFileIgnorePattern: "routeTree.gen.ts",
