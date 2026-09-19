@@ -7,7 +7,7 @@ export const assertGetElementById = (id: string) => {
 export const registerServiceWorker = async () => {
   if (!navigator.serviceWorker) return;
 
-  const registration = await navigator.serviceWorker.register("sw.js", {
+  const registration = await navigator.serviceWorker.register("/sw.js", {
     type: "module",
     scope: "/",
   });
