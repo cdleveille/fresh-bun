@@ -32,6 +32,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: resolve(outDir),
     emptyOutDir: true,
+    modulePreload: false,
     rolldownOptions: {
       input: {
         main: resolve(root, "index.html"),
