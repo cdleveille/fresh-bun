@@ -15,7 +15,8 @@ export const api = new Hono()
     const { message } = c.req.valid("json");
     console.log(`POST /api/hello "${message}"`);
     return c.json({ message: "hello from bun!" });
-  });
+  })
+  .all("*", c => c.json({ error: "Not Found" }, 404));
 
 io.on("connection", socket => {
   socket.on("hello", (data, callback) => {
