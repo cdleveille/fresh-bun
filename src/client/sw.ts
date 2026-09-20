@@ -107,7 +107,7 @@ const handleFetchRequest = async (event: FetchEvent) => {
   if (isCacheFirstRequest(request)) return await cacheFirstStrategy(request);
 
   if (request.mode === "navigate") {
-    const preloadRes = await event.preloadResponse;
+    const preloadRes = await event.preloadResponse.catch(() => null);
     if (preloadRes) return cacheResponse(request, preloadRes);
   }
 
