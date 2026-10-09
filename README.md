@@ -48,8 +48,8 @@ bun dev
 **Option 1:** Build app and run standalone binary:
 
 ```bash
-bun build:app
-./dist/app
+bun compile
+bun start
 ```
 
 **Option 2:** Build Docker image and run in container:
