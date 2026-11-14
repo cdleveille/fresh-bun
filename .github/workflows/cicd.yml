@@ -16,5 +16,5 @@ jobs:
           bun-version: latest
       - run: bun install --ignore-scripts --frozen-lockfile
       - run: bun biome ci .
-      - run: bun tsc
+      - run: bun check
       - run: bun compile
